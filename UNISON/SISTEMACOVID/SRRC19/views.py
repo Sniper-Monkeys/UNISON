@@ -21,12 +21,9 @@ def contactar(request):
     alumnos = Alumno.objects.all()
     return render(request, "FormularioContacto.html", {"alumnos": alumnos})
 
-def index(request):
-    return render(request, "index.html")
-
 def ingresar(request):
     if request.method == "POST":
-        inicioexitoso = authenticate(request, username=request.POST.get('usuario'), password=request.POST.get('contrena'))
+        inicioexitoso = authenticate(request, username=request.POST.get('usuario'), password=request.POST.get('contrasena'))
         if inicioexitoso is None:
             return render(request, 'index.html', {'form': AuthenticationForm(), 'error': 'El Usuario o la Contraseña son incorrectos'})
         else:
