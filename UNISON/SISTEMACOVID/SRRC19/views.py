@@ -3,7 +3,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from UNISON.SISTEMACOVID.SRRC19.models import *
 
@@ -34,3 +34,9 @@ def ingresar(request):
 
 def inicio(request):
     return render(request, 'inicio.html')
+
+def salida(request):
+    if request.method=="POST":
+        logout(request)
+        return redirect('ingresarpagina')
+
