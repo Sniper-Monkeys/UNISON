@@ -31,7 +31,7 @@ def ingresar(request):
             return render(request, 'index.html', {'form': AuthenticationForm(), 'error': 'El Usuario o la Contraseña son incorrectos'})
         else:
             login(request, inicioexitoso)
-            return redirect('inicio')
+            return redirect('iniciopagina')
     else:
         return render(request, 'index.html', {'form': AuthenticationForm()})
 

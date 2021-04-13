@@ -22,5 +22,5 @@ urlpatterns = [
     path('contactar/', contactar),
     path('', index),
     path('ingresar/', ingresar),
-    path('inicio/', inicio)
+    path('inicio/', inicio, name="iniciopagina")
 ]
