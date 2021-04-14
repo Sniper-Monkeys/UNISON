@@ -19,7 +19,7 @@ from UNISON.SISTEMACOVID.SRRC19.views import contactar, ingresar, inicio, salida
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('contactar/', contactar),
+    path('contactar/', contactar, name="contacto"),
     path('', ingresar, name='ingresarpagina'),
     path('inicio/', inicio, name="iniciopagina"),
     path('salida', salida, name="salidapagina" )
