@@ -30,7 +30,7 @@
                     <form method="POST" action="{% url 'salidapagina' %}">
                         <h1>
                             Bienvendido {{ user.username }}
-                            <input type="submit" value="Cerrar Sesion" class="btn btn-dark"/>
+                            <input type="submit" value="Cerrar sesión" class="btn btn-dark"/>
                         </h1>
                         {% csrf_token %}
                     </form>
