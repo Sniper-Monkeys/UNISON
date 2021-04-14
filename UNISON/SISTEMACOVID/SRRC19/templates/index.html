@@ -13,20 +13,20 @@
 
 </head>
 <body>
-<div class="wrapper">
-    <div class="sidebar">
-        <h2>SRRC-19</h2>
-        <ul>
-            <li><a href="#"><i class="fas fa-home"></i>Menú inicio</a></li>
-            <li><a href="#"><i class="fas fa-exclamation-circle"></i>Perfil</a></li>
-            <li><a href="#"><i class="fas fa-address-card"></i>Reportar</a></li>
-            <li><a href="#"><i class="fas fa-poll-h"></i>Encuesta</a></li>
-        </ul>
-    </div>
-    <div class="main_content">
-        <div class="header">
-            <div class>
-                {% if user.is_authenticated %}
+{% if user.is_authenticated %}
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>SRRC-19</h2>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i>Menú inicio</a></li>
+                <li><a href="#"><i class="fas fa-exclamation-circle"></i>Perfil</a></li>
+                <li><a href="#"><i class="fas fa-address-card"></i>Reportar</a></li>
+                <li><a href="#"><i class="fas fa-poll-h"></i>Encuesta</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class="header">
+                <div class>
                     <form method="POST" action="{% url 'salidapagina' %}">
                         <h1>
                             Bienvendido {{ user.username }}
@@ -34,67 +34,80 @@
                         </h1>
                         {% csrf_token %}
                     </form>
-                {% else %}
-                    <a href="{% url 'ingresarpagina' %}">Inicio</a>
-                {% endif %}
-            </div>
-        </div>
-        <div class="info">
-            <h1>Contactar alumno</h1>
-
-            <form action="/contactar/" method="POST"> {% csrf_token %}
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Alumno(s) en riesgo</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput"
-                           placeholder="Introduce un alumno en riesgo, se mandará un correo" name="txtMensaje">
                 </div>
-                <input type="submit" class="btn btn-primary" value="Enviar" onclick="fireSweetAlert"/>
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+            </div>
+            <div class="info">
+                <h1>Contactar alumno</h1>
 
-            </form>
-            <div>
-                <div class="content">
-                    {% block content %}
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Matricula</th>
-                                <th scope="col">Nombre(s)</th>
-                                <th scope="col">Apellido Paterno</th>
-                                <th scope="col">Apellido Materno</th>
-                                <th scope="col">Estado de Riesgo</th>
-                                <th scope="col">Control</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for alumno in alumnos %}
-                                <tr>
-                                    <th scope="row">{{ alumno.Matricula }}</th>
-                                    <th scope="row">{{ alumno.Nombres }}</th>
-                                    <th scope="row">{{ alumno.ApellidoPaterno }} </th>
-                                    <th scope="row">{{ alumno.ApellidoMaterno }} </th>
-                                    <th scope="row">{{ alumno.Riesgo }}</th>
-                                    <th scope="row">
-                                        <button type="submit" value="Submit" class="btn btn-warning">REPORTAR</button>
-                                    </th>
-                                </tr>
+                <form action="/contactar/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Alumno(s) en riesgo</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput"
+                               placeholder="Introduce un alumno en riesgo, se mandará un correo" name="txtMensaje">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Enviar" onclick="fireSweetAlert"/>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                             {% endfor %}
-                            </tbody>
-                        </table>
-                    {% endblock %}
+                        </ul>
+                    {% endif %}
 
+                </form>
+                <div>
+                    <div class="content">
+                        {% block content %}
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Matricula</th>
+                                    <th scope="col">Nombre(s)</th>
+                                    <th scope="col">Apellido Paterno</th>
+                                    <th scope="col">Apellido Materno</th>
+                                    <th scope="col">Estado de Riesgo</th>
+                                    <th scope="col">Control</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for alumno in alumnos %}
+                                    <tr>
+                                        <th scope="row">{{ alumno.Matricula }}</th>
+                                        <th scope="row">{{ alumno.Nombres }}</th>
+                                        <th scope="row">{{ alumno.ApellidoPaterno }} </th>
+                                        <th scope="row">{{ alumno.ApellidoMaterno }} </th>
+                                        <th scope="row">{{ alumno.Riesgo }}</th>
+                                        <th scope="row">
+                                            <button type="submit" value="Submit" class="btn btn-warning">REPORTAR
+                                            </button>
+                                        </th>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endblock %}
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </body>
 
+{% else %}
+    <body>
 
-</body>
+    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">¡ERROR!</div>
+        <div class="card-body">
+            <h5 class="card-title">NO HAS INICIADO SESIÓN</h5>
+            <p class="card-text">Por favor, regresa al menú de inicio de sesión para poder usar el sistema .</p>
+            <button type="button" class="btn btn-primary btn-lg btn-block">
+                <a href="{% url 'ingresarpagina' %}">Iniciar sesión...</a>
+
+        </div>
+    </div>
+    </body>
+{% endif %}
+
 </html>
