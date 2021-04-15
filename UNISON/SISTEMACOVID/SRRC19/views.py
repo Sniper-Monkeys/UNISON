@@ -11,7 +11,7 @@ from django.contrib import messages  # import messages
 
 # Create your views here.
 
-def contactar(request):
+def contactar(request): # Queda obsolote por ahora, lo dejo como referencia para los correos
     if request.method == "POST":
         asunto = "¡Persona en Estado de Riesgo!"
         mensaje = "La(s) persona(s): " + request.POST["txtMensaje"] + " está(n) en estado de riesgo"
@@ -32,9 +32,21 @@ def ingresar(request):
                           {'form': AuthenticationForm(), 'error': 'El Usuario o la contraseña son incorrectos... '})
         else:
             login(request, inicioexitoso)
-            return redirect('contacto')
+            return redirect('iniciopagina')
     else:
         return render(request, 'login.html', {'form': AuthenticationForm()})
+
+
+def inicio(request):
+    alumnos = Alumno.objects.all()
+    return render(request, "index.html", {"alumnos": alumnos})
+
+
+def perfil(request):
+    alumnos = Alumno.objects.all()
+    contexto={'alumnos': alumnos}
+    return render(request, 'perfil.html', contexto)
+
 
 def salida(request):
     if request.method == "POST":

@@ -12,7 +12,7 @@ class Alumno(models.Model):
     ApellidoPaterno = models.CharField(max_length=35)
     ApellidoMaterno = models.CharField(max_length=35)
     Nombres = models.CharField(max_length=35)
-    Matricula = models.CharField(max_length=8)
+    Matricula = models.CharField(max_length=9)
     SEXO = (('F', 'Femenino'), ('M', 'Masculino'))
     Sexo = models.CharField(max_length=1, choices=SEXO, default='M')
 
