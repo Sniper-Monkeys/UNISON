@@ -29,7 +29,7 @@
                 <div class>
                     <form method="POST" action="{% url 'salidapagina' %}">
                         <h1>
-                            Bienvendido {{ user.username }}
+                            Bienvendido {{ user.Matricula }}
                             <input type="submit" value="Cerrar Sesión" class="btn btn-dark"/>
                         </h1>
                         {% csrf_token %}

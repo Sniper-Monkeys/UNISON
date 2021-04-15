@@ -19,12 +19,13 @@ def contactar(request): # Queda obsolote por ahora, lo dejo como referencia para
         email_para = ["martinxf22@gmail.com"]  # AGREGAR OTRO CORREO ELECTRONICO
         send_mail(asunto, mensaje, email_desde, email_para, fail_silently=False)
         messages.success(request, "Mensaje enviado correctamente.")
-    alumnos = Alumno.objects.all()
+    alumnos = User.objects.all()
     return render(request, "index.html", {"alumnos": alumnos})
 
 
 def ingresar(request):
     if request.method == "POST":
+        print(request.POST.get('usuario'))
         inicioexitoso = authenticate(request, username=request.POST.get('usuario'),
                                      password=request.POST.get('contrasena'))
         if inicioexitoso is None:
@@ -38,12 +39,12 @@ def ingresar(request):
 
 
 def inicio(request):
-    alumnos = Alumno.objects.all()
+    alumnos = User.objects.all()
     return render(request, "index.html", {"alumnos": alumnos})
 
 
 def perfil(request):
-    alumnos = Alumno.objects.all()
+    alumnos = User.objects.all()
     contexto={'alumnos': alumnos}
     return render(request, 'perfil.html', contexto)
 

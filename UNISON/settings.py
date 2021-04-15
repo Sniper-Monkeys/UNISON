@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from UNISON.SISTEMACOVID import SRRC19
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'UNISON.SISTEMACOVID.SRRC19',
 
 ]
+AUTH_USER_MODEL = 'SRRC19.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
