@@ -92,3 +92,10 @@ def Mandar_correo(request):
         send_mail(asunto, mensaje, email_desde, email_para, fail_silently=False)
         messages.success(request, "Mensaje enviado correctamente.")
     return render(request, 'index.html')
+
+
+def Realizar_Encuesta(request):
+    return render(request, 'encuesta.html')
+
+def Reportar(request):
+    return render(request, 'reportar.html')

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from UNISON.SISTEMACOVID.SRRC19.views import inicio, contactar, ingresar, perfil, salida,Mandar_correo
+from UNISON.SISTEMACOVID.SRRC19.views import inicio, contactar, ingresar, perfil, salida,Mandar_correo, Realizar_Encuesta,Reportar
 
 urlpatterns = [
     path('admin/', admin.site.urls ),
@@ -24,5 +24,7 @@ urlpatterns = [
     path('inicio/', inicio, name='iniciopagina'),
     path('perfil/', perfil, name="perfilpagina"),
     path('salida', salida, name="salidapagina"),
-    path('correo/', Mandar_correo, name="mandarcorreo")
+    path('correo/', Mandar_correo, name="mandarcorreo"),
+    path('encuesta/',Realizar_Encuesta, name="encuesta"),
+    path('reportar/', Reportar, name="reportar"),
 ]

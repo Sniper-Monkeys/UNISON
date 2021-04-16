@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="{% static 'css/reportar.css' %}">
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <meta charset="UTF-8">
+    <title>Mandar correo</title>
+
+</head>
+<body style="background-color: #c9c7c7">
+{% if user.is_authenticated %}
+    {% if user.ocupacion ==  'A' %}
+        <link rel="stylesheet" href="{% static 'css/alumno.css' %}">
+        <div class="wrapper">
+            <div class="sidebar">
+                <h2>SRRC-19</h2>
+                <ul>
+                    <li><a href="{% url 'iniciopagina' %}"><i class="fas fa-home"></i>Menú inicio</a></li>
+                    <li><a href="{% url 'perfilpagina' %}"><i class="fas fa-exclamation-circle"></i>Perfil</a></li>
+                    <li><a href="{% url 'reportar' %}"><i class="fas fa-address-card"></i>Reportar</a></li>
+                    <li><a href="{% url 'encuesta' %}"><i class="fas fa-poll-h"></i>Encuesta</a></li>
+                </ul>
+            </div>
+            <div class="main_content">
+                <header class="header">
+                    <h1 id="title" class="text-center">Sistema de reporte a un usuario</h1>
+                    <p id="description" class="description text-center">
+                        Reportar en caso de que algún usario del campus rompa alguno de los lineamientos
+                        establecidos
+                    </p>
+                </header>
+                <div class="info">
+                    <!----------------------------------------------------------------------------------------------------------------------
+                   *********************************************************************************************************************-->
+
+                    <div class="container">
+                        <form id="survey-form">
+                            <div class="form-group">
+                                <label id="name-label" for="name">Nombre del usuario</label>
+                                <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        class="form-control"
+                                        placeholder="Escribe el nombre del usuario a reportar"
+                                        required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="email-label" for="email">Matricula</label>
+                                <input
+                                        type="number"
+                                        name="matricula"
+                                        id="email"
+                                        class="form-control"
+                                        placeholder="Digite su número de matricula"
+                                        required
+                                />
+                            </div>
+
+
+                            <div class="form-group">
+                                <p>¿Se le ha avisado con anterioridad al usuario reportado?</p>
+                                <label>
+                                    <input
+                                            name="user-recommend"
+                                            value="definitely"
+                                            type="radio"
+                                            class="input-radio"
+                                            checked
+                                    />Si</label
+                                >
+                                <label>
+                                    <input
+                                            name="user-recommend"
+                                            value="maybe"
+                                            type="radio"
+                                            class="input-radio"
+                                    />No</label
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <p>
+                                    ¿Cuales han sido los lineamientos no cumplidos?
+                                    <span class="clue">(Marcar al menos uno)</span>
+                                </p>
+
+                                <label
+                                ><input
+                                        name="prefer"
+                                        value="front-end-projects"
+                                        type="checkbox"
+                                        class="input-checkbox"
+                                />No trae cubrebocas</label>
+<br>
+                                <label>
+
+                                    <input
+                                            name="prefer"
+                                            value="back-end-projects"
+                                            type="checkbox"
+                                            class="input-checkbox"
+                                    />No usó gel sanitizante</label>
+                                 <br>
+                                <label>
+                                    <input
+                                        name="prefer"
+                                        value="data-visualization"
+                                        type="checkbox"
+                                        class="input-checkbox"
+                                />No usó el tapete sanitizante</label>
+                                <br>
+                                <label
+                                ><input
+                                        name="prefer"
+                                        value="challenges"
+                                        type="checkbox"
+                                        class="input-checkbox"
+                                />Entró al departamento aún estando el aforo en su máximo punto</label>
+                                <br>
+                                <label
+                                ><input
+                                        name="prefer"
+                                        value="open-source-community"
+                                        type="checkbox"
+                                        class="input-checkbox"
+                                />No respetó la sana distancia</label>
+                                <br>
+                                <label
+                                ><input
+                                        name="prefer"
+                                        value="gitter-help-rooms"
+                                        type="checkbox"
+                                        class="input-checkbox"
+                                />No realizó su encuesta semanal</label>
+                                <br>
+                                <label
+                                ><input
+                                        name="prefer"
+                                        value="videos"
+                                        type="checkbox"
+                                        class="input-checkbox"
+                                />Sigue visitando el campús apesar de que ya se le avisó su estado de riesgo</label>
+                                <br>
+                                <label
+                                ><input
+                                        name="prefer"
+                                        value="city-meetups"
+                                        type="checkbox"
+                                        class="input-checkbox"
+                                />Vino días seguidos</label>
+                                <br>
+                            </div>
+
+                            <div class="form-group">
+                                <p>¿Tienes más opciones?</p>
+                                <textarea
+                                        id="comments"
+                                        class="input-textarea"
+                                        name="comment"
+                                        placeholder="Ingresa tus comentarios aquí..."
+                                ></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" id="submit" class="submit-button" onclick="JSalert()" >
+                                    Enviar reporte
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!----------------------------------------------------------------------------------------------------------------------
+                   *********************************************************************************************************************-->
+                </div>
+            </div>
+        </div>
+        </body>
+    {% endif %}
+{% else %}
+    <body>
+
+    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">¡ERROR!</div>
+        <div class="card-body">
+            <h5 class="card-title">NO HAS INICIADO SESIÓN</h5>
+            <p class="card-text">Por favor, regresa al menú de inicio de sesión para poder usar el sistema .</p>
+            <button type="button" class="btn btn-primary btn-lg btn-block">
+                <a href="{% url 'ingresarpagina' %}">Iniciar sesión...</a>
+            </button>
+        </div>
+    </div>
+    </body>
+{% endif %}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="{% static 'js/reportar.js.js' %}"></script>
+</html>
+
+
+
