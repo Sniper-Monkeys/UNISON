@@ -31,8 +31,18 @@
                                  style="border-radius: 50%" width="150">
                             <div class="mt-3">
                                 <h4></h4>
-                                <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                {% if user.riesgo == "V" %}
+                                    <p class="text-secondary mb-1"> Estado de Riesgo: Verde</p>
+                                {% endif %}
+                                {% if user.riesgo == "A" %}
+                                    <p class="text-secondary mb-1"> Estado de Riesgo: Amarillo</p>
+                                {% endif %}
+                                {% if user.riesgo == "N" %}
+                                    <p class="text-secondary mb-1"> Estado de Riesgo: Naranja</p>
+                                {% endif %}
+                                {% if user.riesgo == "R" %}
+                                    <p class="text-secondary mb-1"> Estado de Riesgo: Rojo</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
