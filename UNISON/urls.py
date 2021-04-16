@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from UNISON.SISTEMACOVID.SRRC19.views import inicio, contactar, ingresar, perfil, salida, Mandar_correo
-from UNISON.SISTEMACOVID.SRRC19.views import Realizar_Encuesta, Buscar_Alumno, Perfil_Buscado, Reportar
+from UNISON.SISTEMACOVID.SRRC19.views import Realizar_Encuesta, Buscar_Alumno, Perfil_Buscado, Reportar, Generar_Reporte
 
 urlpatterns = [
     path('admin/', admin.site.urls ),
@@ -30,4 +30,5 @@ urlpatterns = [
     path('buscar/', Buscar_Alumno, name="buscarpagina"),
     path('encontrado/', Perfil_Buscado, name="encontradopagina"),
     path('reportar/', Reportar, name="reportar"),
+    path('generareporte/', Generar_Reporte, name="reporte"),
 ]

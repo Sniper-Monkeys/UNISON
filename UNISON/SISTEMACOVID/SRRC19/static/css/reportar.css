@@ -92,7 +92,7 @@ button {
 .clue {
   margin-left: 0.25rem;
   font-size: 0.9rem;
-  color: #e4e4e4;
+  color: #494848;
 }
 
 .text-center {
@@ -101,8 +101,8 @@ button {
 
 /* form */
 
-form {
-  background: #048ABF;
+.row form {
+  background: #f6f6f6;
   padding: 2.5rem 0.625rem;
   border-radius: 0.25rem;
 }
@@ -161,3 +161,4 @@ form {
   border-radius: 2px;
   cursor: pointer;
 }
+

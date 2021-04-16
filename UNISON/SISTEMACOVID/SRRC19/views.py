@@ -46,10 +46,8 @@ def inicio(request):
     alumnos = User.objects.all()
     cantidadEstadoDeRiesgo = 0
     for alu in User.objects.all():
-        print(alu.username + "" + alu.ocupacion)
         if alu.riesgo == 'R':
             cantidadEstadoDeRiesgo+=1
-    print(cantidadEstadoDeRiesgo)
 
 
    # for alu in User.objects.all():
@@ -106,9 +104,25 @@ def Perfil_Buscado(request):
     if request.method == 'GET':
         busqueda = request.GET.get('busqueda')
         alumno = User.objects.all().filter(matricula=busqueda)
+
+
         return render(request, 'perfil_buscado.html', {'alumno': alumno})
 
 
 
+    return render(request, 'perfil_buscado.html')
+
+
 def Reportar(request):
     return render(request, 'reportar.html')
+
+
+
+def Generar_Reporte(request):
+    if request.method == 'POST':
+        print(request.POST)
+    return redirect('iniciopagina')
+
+
+
+

@@ -22,3 +22,33 @@ class User(AbstractUser):
     riesgo = models.CharField(max_length=1, choices=RIESGO, default='V')
     CORREOMANDADO = (('S', 'SI'),('N', 'NO'))
     CorreoMandado = models.CharField(max_length=1, choices=CORREOMANDADO, default='N')
+
+
+class Reporte(models.Model):
+    matricula_reportado = models.CharField(max_length=50, default='xxxxxxxx')
+    NoCubrebocas = models.BooleanField(default=False)
+    GelSanitizante = models.BooleanField(default=False)
+    NoTapeteSanitizante = models.BooleanField(default=False)
+    NoRespetarAforo = models.BooleanField(default=False)
+    NoRespetarSanaDistancia = models.BooleanField(default=False)
+    NoRealizarEncuestaSemanal = models.BooleanField(default=False)
+    NoRespetarEstadoDeRiesgo = models.BooleanField(default=False)
+    AsistirDiasSeguidos = models.BooleanField(default=False)
+    Comentarios = models.CharField(max_length=255,default="...")
+    def __str__(self):
+        return self.matricula_reportado
+
+
+class AlumnoBuscado(models.Model):
+    alumno_buscado = models.CharField(max_length=50, default='xxxxxxxx')
+    NoCubrebocas = models.BooleanField(default=False)
+    GelSanitizante = models.BooleanField(default=False)
+    NoTapeteSanitizante = models.BooleanField(default=False)
+    NoRespetarAforo = models.BooleanField(default=False)
+    NoRespetarSanaDistancia = models.BooleanField(default=False)
+    NoRealizarEncuestaSemanal = models.BooleanField(default=False)
+    NoRespetarEstadoDeRiesgo = models.BooleanField(default=False)
+    AsistirDiasSeguidos = models.BooleanField(default=False)
+    Comentarios = models.CharField(max_length=255,default="...")
+    def __str__(self):
+        return self.alumno_buscado

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     <title>Perfil</title>
 </head>
 <body style="background-color: #eaeaea">
@@ -123,63 +124,27 @@
                                                 <div class="col-sm-6 mb-3">
                                                     <div class="card h-100">
                                                         <div class="card-body">
-                                                            <h6 class="d-flex align-items-center mb-3"><i
-                                                                    class="material-icons text-info mr-2">Reportar Alumno</i>Project
-                                                                Status</h6>
+
+                                                            <h4 class="d-flex align-items-center mb-3">Reportar
+                                                                Alumno</h4>
+
                                                             <div class="container">
-                                                                <link rel="stylesheet" href="{% static 'css/reportar.css' %}">
-                                                                <form id="survey-form">
+                                                                <link rel="stylesheet"
+                                                                      href="{% static 'css/reportar.css' %}">
+                                                                <form method="POST" action="{% url 'reporte' %}">
+                                                                    {% csrf_token %}
                                                                     <div class="form-group">
-                                                                        <label id="name-label" for="name">Nombre del
-                                                                            usuario</label>
-                                                                        <input
-                                                                                type="text"
-                                                                                name="name"
-                                                                                id="name"
-                                                                                class="form-control"
-                                                                                placeholder="Escribe el nombre del usuario a reportar"
-                                                                                required/>
-                                                                    </div>
+                                                                        <div class="col-sm-9 text-secondary">
 
-                                                                    <div class="form-group">
-                                                                        <label id="email-label"
-                                                                               for="email">Matricula</label>
-                                                                        <input
-                                                                                type="number"
-                                                                                name="matricula"
-                                                                                id="email"
-                                                                                class="form-control"
-                                                                                placeholder="Digite su número de matricula"
-                                                                                required
-                                                                        />
-                                                                    </div>
-
-
-                                                                    <div class="form-group">
-                                                                        <p>¿Se le ha avisado con anterioridad al usuario
-                                                                            reportado?</p>
-                                                                        <label>
-                                                                            <input
-                                                                                    name="user-recommend"
-                                                                                    value="definitely"
-                                                                                    type="radio"
-                                                                                    class="input-radio"
-                                                                                    checked
-                                                                            />Si</label
-                                                                        >
-                                                                        <label>
-                                                                            <input
-                                                                                    name="user-recommend"
-                                                                                    value="maybe"
-                                                                                    type="radio"
-                                                                                    class="input-radio"
-                                                                            />No</label
-                                                                        >
-
-                                                                    </div>
-
-
-                                                                    <div class="form-group">
+                                                                            <label for="matricula">
+                                                                                <input
+                                                                                        id="matricula"
+                                                                                        name="matricula"
+                                                                                        value="{{ a.matricula }}"
+                                                                                        type="number"
+                                                                                        style="display: contents">
+                                                                            </label>
+                                                                        </div>
                                                                         <p>
                                                                             ¿Cuales han sido los lineamientos no
                                                                             cumplidos?
@@ -188,8 +153,7 @@
 
                                                                         <label
                                                                         ><input
-                                                                                name="prefer"
-                                                                                value="front-end-projects"
+                                                                                value="respuesta1"
                                                                                 type="checkbox"
                                                                                 class="input-checkbox"
                                                                         />No trae cubrebocas</label>
@@ -197,24 +161,24 @@
                                                                         <label>
 
                                                                             <input
-                                                                                    name="prefer"
-                                                                                    value="back-end-projects"
+                                                                                    name="lineamientos"
+                                                                                    value="respuesta2"
                                                                                     type="checkbox"
                                                                                     class="input-checkbox"
                                                                             />No usó gel sanitizante</label>
                                                                         <br>
                                                                         <label>
                                                                             <input
-                                                                                    name="prefer"
-                                                                                    value="data-visualization"
+                                                                                    name="lineamientos"
+                                                                                    value="respuesta3"
                                                                                     type="checkbox"
                                                                                     class="input-checkbox"
                                                                             />No usó el tapete sanitizante</label>
                                                                         <br>
                                                                         <label
                                                                         ><input
-                                                                                name="prefer"
-                                                                                value="challenges"
+                                                                                name="lineamientos"
+                                                                                value="respuesta4"
                                                                                 type="checkbox"
                                                                                 class="input-checkbox"
                                                                         />Entró al departamento aún estando el aforo en
@@ -222,24 +186,24 @@
                                                                         <br>
                                                                         <label
                                                                         ><input
-                                                                                name="prefer"
-                                                                                value="open-source-community"
+                                                                                name="lineamientos"
+                                                                                value="respuesta4"
                                                                                 type="checkbox"
                                                                                 class="input-checkbox"
                                                                         />No respetó la sana distancia</label>
                                                                         <br>
                                                                         <label
                                                                         ><input
-                                                                                name="prefer"
-                                                                                value="gitter-help-rooms"
+                                                                                name="lineamientos"
+                                                                                value="respuesta5"
                                                                                 type="checkbox"
                                                                                 class="input-checkbox"
                                                                         />No realizó su encuesta semanal</label>
                                                                         <br>
                                                                         <label
                                                                         ><input
-                                                                                name="prefer"
-                                                                                value="videos"
+                                                                                name="lineamientos"
+                                                                                value="respuesta6"
                                                                                 type="checkbox"
                                                                                 class="input-checkbox"
                                                                         />Sigue visitando el campús apesar de que ya se
@@ -247,8 +211,7 @@
                                                                         <br>
                                                                         <label
                                                                         ><input
-                                                                                name="prefer"
-                                                                                value="city-meetups"
+                                                                                value="respuesta7"
                                                                                 type="checkbox"
                                                                                 class="input-checkbox"
                                                                         />Vino días seguidos</label>
@@ -257,20 +220,19 @@
 
                                                                     <div class="form-group">
                                                                         <p>¿Tienes más opciones?</p>
-                                                                        <textarea
-                                                                                id="comments"
-                                                                                class="input-textarea"
-                                                                                name="comment"
-                                                                                placeholder="Ingresa tus comentarios aquí..."
-                                                                        ></textarea>
+                                                                        <label for="comments"></label><textarea
+                                                                            id="comments"
+                                                                            class="input-textarea"
+                                                                            name="comment"
+                                                                            placeholder="Ingresa tus comentarios aquí..."
+                                                                    ></textarea>
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <button type="submit" id="submit"
-                                                                                class="submit-button"
-                                                                                onclick="JSalert()">
-                                                                            Enviar reporte
-                                                                        </button>
+                                                                        <input type="submit" id="submit"
+                                                                               class="submit-button"
+                                                                               onclick="completado()">
+                                                                        Enviar reporte
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -350,7 +312,9 @@
             </button>
         </div>
     </div>
-    </body>
 {% endif %}
+</body>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="{% static 'js/reportar.js' %}"></script>
 
 </html>
