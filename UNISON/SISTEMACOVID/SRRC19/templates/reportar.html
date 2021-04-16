@@ -13,16 +13,16 @@
 </head>
 <body style="background-color: #c9c7c7">
 {% if user.is_authenticated %}
-    {% if user.ocupacion ==  'A' %}
-        <link rel="stylesheet" href="{% static 'css/alumno.css' %}">
+    {% if user.ocupacion ==  'D' %}
+        <link rel="stylesheet" href="{% static 'css/docente.css' %}">
         <div class="wrapper">
             <div class="sidebar">
                 <h2>SRRC-19</h2>
                 <ul>
                     <li><a href="{% url 'iniciopagina' %}"><i class="fas fa-home"></i>Menú inicio</a></li>
                     <li><a href="{% url 'perfilpagina' %}"><i class="fas fa-exclamation-circle"></i>Perfil</a></li>
+                    <li><a href="{% url 'buscarpagina' %}"><i class="fas fa-exclamation-circle"></i>Buscar Alumno</a></li>
                     <li><a href="{% url 'reportar' %}"><i class="fas fa-address-card"></i>Reportar</a></li>
-                    <li><a href="{% url 'encuesta' %}"><i class="fas fa-poll-h"></i>Encuesta</a></li>
                 </ul>
             </div>
             <div class="main_content">

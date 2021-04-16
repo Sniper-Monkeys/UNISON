@@ -97,5 +97,18 @@ def Mandar_correo(request):
 def Realizar_Encuesta(request):
     return render(request, 'encuesta.html')
 
+
+def Buscar_Alumno(request):
+    return render(request, 'buscar.html')
+
+
+def Perfil_Buscado(request):
+    if request.method == 'GET':
+        busqueda = request.GET.get('busqueda')
+        alumno = User.objects.all().filter(matricula=busqueda)
+        return render(request, 'perfil_buscado.html', {'alumno': alumno})
+
+
+
 def Reportar(request):
     return render(request, 'reportar.html')
