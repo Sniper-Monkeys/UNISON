@@ -9,7 +9,9 @@ body {
 
 .card {
     margin-bottom: 20px;
-    border: none
+    border: none;
+
+
 }
 
 .box {
@@ -17,8 +19,8 @@ body {
     padding: 40px;
     position: absolute;
     top: 50%;
-    left: 50%;
-    background: #191919;;
+    left: 60%;
+    background: #191919;
     text-align: center;
     transition: 0.25s;
     margin-top: 100px
@@ -26,8 +28,7 @@ body {
 
 .box input[type="text"],
 .box input[type="password"] {
-    border: 0;
-    background: none;
+	background: none;
     display: block;
     margin: 20px auto;
     text-align: center;
@@ -53,8 +54,7 @@ body {
 }
 
 .box input[type="submit"] {
-    border: 0;
-    background: none;
+	background: none;
     display: block;
     margin: 20px auto;
     text-align: center;
@@ -136,7 +136,6 @@ a.socialIcon:hover,
 .social-circle i {
     color: #fff;
     transition: all 0.8s;
-    transition: all 0.8s
 }
 html,
 
@@ -158,12 +157,14 @@ html,
 
 		.shadow {
 			width: 100px;
-		  height: 10px;
-		  background: #1c1c1c;
-		  border-radius: 70%;
-		  opacity: 1;
-		  filter: blur(3px);
-		  animation-name: animate-shadow;
+		  	height: 10px;
+			position: relative;
+    		left: 39%;
+			background: #3e1917;
+		  	border-radius: 70%;
+		  	opacity: 1;
+		  	filter: blur(3px);
+		  	animation-name: animate-shadow;
 			animation-duration: 1s;
 			animation-direction: alternate;
 			animation-iteration-count: infinite;
