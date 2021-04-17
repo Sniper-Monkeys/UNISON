@@ -120,7 +120,17 @@ def Reportar(request):
 
 def Generar_Reporte(request):
     if request.method == 'POST':
-        print(request.POST)
+        reporte = Reporte.objects.create(matricula_reportado=request.POST.get('matricula'))
+        reporte.NoCubrebocas = request.POST.get('respuesta1')
+        reporte.GelSanitizante =  request.POST.get('respuesta2')
+        reporte.NoRespetarAforo =  request.POST.get('respuesta3')
+        reporte.NoRespetarSanaDistancia =  request.POST.get('respuesta4')
+        reporte.NoRealizarEncuestaSemanal =  request.POST.get('respuesta5')
+        reporte.NoRespetarEstadoDeRiesgo =  request.POST.get('respuesta6')
+        reporte.AsistirDiasSeguidos =  request.POST.get('respuesta7')
+        reporte.Comentarios = request.POST.get('comment')
+        reporte.save()
+        messages.success(request,'Se ha mandado el reporte correctamente')
     return redirect('iniciopagina')
 
 
