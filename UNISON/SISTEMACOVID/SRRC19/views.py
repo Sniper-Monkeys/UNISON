@@ -8,7 +8,7 @@ from django.db import IntegrityError
 from django.template.loader import render_to_string
 from UNISON.SISTEMACOVID.SRRC19.models import *
 from django.contrib import messages  # import messages
-
+from datetime import datetime
 
 # Create your views here.
 
@@ -129,6 +129,7 @@ def Generar_Reporte(request):
         reporte.NoRespetarEstadoDeRiesgo =  request.POST.get('respuesta6')
         reporte.AsistirDiasSeguidos =  request.POST.get('respuesta7')
         reporte.Comentarios = request.POST.get('comment')
+        reporte.hora = datetime.now()
         reporte.save()
         messages.success(request,'Se ha mandado el reporte correctamente')
     return redirect('iniciopagina')

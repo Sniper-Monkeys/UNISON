@@ -5,6 +5,8 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.shortcuts import render, redirect
+from datetime import datetime
+
 # python manage.py createmigrate <- Para almacenar modelo de base de datos
 # python manage.py createsuperuser <- Para agregar un super usuario
 # python manage.py migrate <- Para actualizar modelo de base de datos
@@ -35,6 +37,8 @@ class Reporte(models.Model):
     NoRespetarEstadoDeRiesgo = models.BooleanField(default=False)
     AsistirDiasSeguidos = models.BooleanField(default=False)
     Comentarios = models.CharField(max_length=255,default="...")
+    hora = models.DateTimeField(default=datetime.now(), blank=True)
+
     def __str__(self):
         return self.matricula_reportado
 
