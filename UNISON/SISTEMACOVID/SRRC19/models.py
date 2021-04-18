@@ -23,6 +23,8 @@ class User(AbstractUser):
     riesgo = models.CharField(max_length=1, choices=RIESGO, default='V')
     CORREOMANDADO = (('S', 'SI'),('N', 'NO'))
     CorreoMandado = models.CharField(max_length=1, choices=CORREOMANDADO, default='N')
+    class Meta:
+        ordering = ['riesgo']
 
 class Reporte(models.Model):
     matricula_reportado = models.CharField(max_length=50, default='xxxxxxxx')

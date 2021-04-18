@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.mail import send_mail, EmailMessage
@@ -89,26 +90,25 @@ def Inicio_Docente(request):
 
     group = Grupos.objects.get(Materia='Ingeniería en Software 1')
 
-
     for i in group.users.values():
         alumnos.append(i)
         if i["riesgo"] < "V":
             cantidadEstadoDeRiesgo += 1
     print(cantidadEstadoDeRiesgo)
 
-
-
-
     return render(request, 'inicio_docente.html', {"alumnos": alumnos , "contagiados": cantidadEstadoDeRiesgo})
 
 
 def Inicio_Administrativo(request):
-    return render(request, 'inicio_administrativo.html')
+    alumnos = User.objects.all().filter(ocupacion= "A")
+    cantidadEstadoDeRiesgo = 0
+    for i in alumnos:
+        if i.riesgo < 'V':
+            cantidadEstadoDeRiesgo += 1
+    return render(request, 'inicio_administrativo.html', {"alumnos": alumnos , "contagiados": cantidadEstadoDeRiesgo})
 
 
 def perfil(request):
-    # t.Matricula = 219205955
-    # t.save()
     return render(request, 'perfil.html')
 
 
@@ -142,8 +142,7 @@ def Perfil_Buscado(request):
     if request.method == 'GET':
         busqueda = request.GET.get('busqueda')
         alumno = User.objects.all().filter(matricula=busqueda)
-        reportes = Reporte.objects.filter(matricula_reportado='219205955')
-        print(reportes.values())
+        reportes = Reporte.objects.filter(matricula_reportado=request.GET.get('busqueda'))
 
         return render(request, 'perfil_buscado.html', {'alumno': alumno,"reporte":reportes})
 
@@ -171,7 +170,7 @@ def Generar_Reporte(request):
         reporte.Comentarios = request.POST.get('comment')
         reporte.save()
         messages.success(request, 'Se ha mandado el reporte correctamente')
-    return redirect('iniciopagina')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 
