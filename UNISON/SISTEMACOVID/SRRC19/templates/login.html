@@ -20,7 +20,7 @@
 <div class="container">
 
     <div class="row">
-         <div class="col-md-6">
+        <div class="col-md-6">
             <div class="card">
                 <form class="box" method="POST">{% csrf_token %}
                     <h1>MAMAHUEVO MAMAHUEVO MAMAHUEVO
@@ -96,7 +96,8 @@
                     <g>
 
 							<rect x="87.73" y="149.962" transform="matrix(0.062 -0.9981 0.9981 0.062 -64.927 233.0152)"
-                                  fill="#FF5555" stroke="#1E1E1E" stroke-miterlimit="10" width="7.542" height="2.174"></rect>
+                                  fill="#FF5555" stroke="#1E1E1E" stroke-miterlimit="10" width="7.542"
+                                  height="2.174"></rect>
                         <path fill="#FF5555" stroke="#1E1E1E" stroke-miterlimit="10" d="M87.387,156.435c0.07-0.98,1.708-1.666,3.67-1.533
 							c1.96,0.131,3.496,1.033,3.431,2.012c-0.066,0.982-1.71,1.67-3.672,1.535C88.856,158.317,87.322,157.413,87.387,156.435z"></path>
 					</g>
@@ -135,7 +136,8 @@
                     <g>
 
 							<rect x="61.05" y="70.169" transform="matrix(0.7939 0.608 -0.608 0.7939 56.6806 -24.7286)"
-                                  fill="#FF5555" stroke="#1E1E1E" stroke-miterlimit="10" width="7.544" height="2.175"></rect>
+                                  fill="#FF5555" stroke="#1E1E1E" stroke-miterlimit="10" width="7.544"
+                                  height="2.175"></rect>
                         <path fill="#FF5555" stroke="#1E1E1E" stroke-miterlimit="10" d="M62.648,64.837c0.772,0.604,0.429,2.348-0.776,3.9
 							c-1.203,1.553-2.809,2.325-3.583,1.725c-0.777-0.603-0.432-2.351,0.774-3.904C60.266,65.006,61.87,64.238,62.648,64.837z"></path>
 					</g>
@@ -156,9 +158,11 @@
 
                 <g class="face">
 
-						<ellipse class="left-eye" fill="#FFFFFF" cx="87.792" cy="109.901" rx="7.745" ry="6.936"></ellipse>
+						<ellipse class="left-eye" fill="#FFFFFF" cx="87.792" cy="109.901" rx="7.745"
+                                 ry="6.936"></ellipse>
 
-                    <ellipse class="left-eyeball" fill="#1E1E1E" cx="87.759" cy="108.753" rx="3.092" ry="2.938"></ellipse>
+                    <ellipse class="left-eyeball" fill="#1E1E1E" cx="87.759" cy="108.753" rx="3.092"
+                             ry="2.938"></ellipse>
 
                     <path class="left-eyebrows" fill="#1E1E1E" d="M68.29,101.559c0,0,0.179-0.059,0.516-0.17c0.321-0.084,0.815-0.262,1.388-0.393
 								c0.582-0.15,1.263-0.295,2.018-0.434c0.754-0.139,1.574-0.25,2.439-0.35c0.86-0.086,1.762-0.145,2.679-0.176
@@ -492,10 +496,10 @@
 
                     </h1>
                     <p class="text-muted"> Por favor ingrese su usuario y contraseña</p>
-                        <label>
-                            <input type="text" name="usuario" placeholder="Usuario">
-                            <input type="password" name="contrasena" placeholder="Contraseña">
-                        </label>
+                    <label>
+                        <input type="text" name="usuario" placeholder="Usuario">
+                        <input type="password" name="contrasena" placeholder="Contraseña">
+                    </label>
                     <input type="submit" name="inicio" value="Ingresar">
                     <b style="color: red;">{{ error }}</b>
                 </form>

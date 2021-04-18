@@ -36,7 +36,14 @@ def ingresar(request):
                           {'form': AuthenticationForm(), 'error': 'El Usuario o la contraseña son incorrectos... '})
         else:
             login(request, inicioexitoso)
-            return redirect('iniciopagina')
+            usuario = User.objects.get(username=request.POST.get('usuario'))
+            if usuario.ocupacion == "A":
+                return redirect('inicioApagina')
+            elif usuario.ocupacion == "D":
+                return redirect('inicioDpagina')
+            elif usuario.ocupacion == "P":
+                return redirect('inicioPpagina')
+            return redirect('ingresarpagina')
     else:
         return render(request, 'login.html', {'form': AuthenticationForm()})
 
@@ -66,6 +73,18 @@ def inicio(request):
 
 
     return render(request, "index.html", {"alumnos": alumnos})
+
+
+def Inicio_Alumno(request):
+    return render(request, 'inicio_alumno.html')
+
+
+def Inicio_Docente(request):
+    return render(request, 'inicio_docente.html')
+
+
+def Inicio_Administrativo(request):
+    return render(request, 'inicio_administrativo.html')
 
 
 def perfil(request):

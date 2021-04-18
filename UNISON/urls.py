@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from UNISON.SISTEMACOVID.SRRC19.views import inicio, contactar, ingresar, perfil, salida, Mandar_correo
 from UNISON.SISTEMACOVID.SRRC19.views import Realizar_Encuesta, Buscar_Alumno, Perfil_Buscado, Reportar, Generar_Reporte
+from UNISON.SISTEMACOVID.SRRC19.views import Inicio_Alumno, Inicio_Docente, Inicio_Administrativo
 
 urlpatterns = [
     path('admin/', admin.site.urls ),
     path('contactar/', contactar, name="contacto"),
     path('', ingresar, name='ingresarpagina'),
     path('inicio/', inicio, name='iniciopagina'),
+    path('inicioA/', Inicio_Alumno, name='inicioApagina'),
+    path('inicioD/', Inicio_Docente, name='inicioDpagina'),
+    path('inicioP/', Inicio_Administrativo, name='inicioPpagina'),
     path('perfil/', perfil, name="perfilpagina"),
     path('salida', salida, name="salidapagina"),
     path('correo/', Mandar_correo, name="mandarcorreo"),
