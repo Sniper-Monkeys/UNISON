@@ -25,10 +25,10 @@ $(".trigger").click(function(){
 });
 
 //Debug:
-function debug(){
-  var debug = "";
-  for (i=0; i<survey.length; i++) {
-    debug += "Nº " + survey[i][0] + " = " + survey[i][1] + "\n";
-  }
-  alert(debug);
+function debug() {
+    var debug = "";
+    for (i = 0; i < survey.length; i++) {
+        debug += "Nº " + survey[i][0] + " = " + survey[i][1] + "\n";
+    }
+    alert(debug)
 }
