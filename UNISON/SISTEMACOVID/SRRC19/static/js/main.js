@@ -1,3 +1,4 @@
+let window;
 window.Apex = {
   chart: {
     foreColor: "#fff",
