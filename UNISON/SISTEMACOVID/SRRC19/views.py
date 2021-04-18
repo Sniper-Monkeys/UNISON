@@ -51,10 +51,11 @@ def ingresar(request):
 def inicio(request):
 
     alumnos = User.objects.all()
+
+    # Add the results to the many to many field (notice the *)
+
+
     cantidadEstadoDeRiesgo = 0
-    for alu in User.objects.all():
-        if alu.riesgo == 'R':
-            cantidadEstadoDeRiesgo+=1
 
 
    # for alu in User.objects.all():
@@ -80,7 +81,25 @@ def Inicio_Alumno(request):
 
 
 def Inicio_Docente(request):
-    return render(request, 'inicio_docente.html')
+    alumnos = []
+    riesgo = []
+    cantidadEstadoDeRiesgo = 0
+
+    # Add the results to the many to many field (notice the *)
+
+    group = Grupos.objects.get(Materia='Ingeniería en Software 1')
+
+
+    for i in group.users.values():
+        alumnos.append(i)
+        if i["riesgo"] < "V":
+            cantidadEstadoDeRiesgo += 1
+    print(cantidadEstadoDeRiesgo)
+
+
+
+
+    return render(request, 'inicio_docente.html', {"alumnos": alumnos , "contagiados": cantidadEstadoDeRiesgo})
 
 
 def Inicio_Administrativo(request):
@@ -123,9 +142,10 @@ def Perfil_Buscado(request):
     if request.method == 'GET':
         busqueda = request.GET.get('busqueda')
         alumno = User.objects.all().filter(matricula=busqueda)
+        reportes = Reporte.objects.filter(matricula_reportado='219205955')
+        print(reportes.values())
 
-
-        return render(request, 'perfil_buscado.html', {'alumno': alumno})
+        return render(request, 'perfil_buscado.html', {'alumno': alumno,"reporte":reportes})
 
 
 
@@ -139,9 +159,19 @@ def Reportar(request):
 
 def Generar_Reporte(request):
     if request.method == 'POST':
-        print(request.POST)
+        reporte = Reporte.objects.create(matricula_reportado=request.POST.get('matricula'))
+        reporte.NoCubrebocas = request.POST.get('respuesta1')
+        reporte.hora = datetime.now()
+        reporte.GelSanitizante = request.POST.get('respuesta2')
+        reporte.NoRespetarAforo = request.POST.get('respuesta3')
+        reporte.NoRespetarSanaDistancia = request.POST.get('respuesta4')
+        reporte.NoRealizarEncuestaSemanal = request.POST.get('respuesta5')
+        reporte.NoRespetarEstadoDeRiesgo = request.POST.get('respuesta6')
+        reporte.AsistirDiasSeguidos = request.POST.get('respuesta7')
+        reporte.Comentarios = request.POST.get('comment')
+        reporte.save()
+        messages.success(request, 'Se ha mandado el reporte correctamente')
     return redirect('iniciopagina')
-
 
 
 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+
     <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -79,208 +80,126 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-3">
-                                                            <h6 class="mb-0">Nombre(s)</h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            {{ a.first_name }}
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <div class="col-sm-3">
-                                                            <h6 class="mb-0">Apellidos</h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            {{ a.last_name }}
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <div class="col-sm-3">
-                                                            <h6 class="mb-0">Correo</h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            {{ a.email }}
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="row">
-                                                        <div class="col-sm-3">
-                                                            <h6 class="mb-0">Matricula</h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            {{ a.matricula }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row gutters-sm">
-                                                <div class="col-sm-6 mb-3">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
+                                            <div class="row gutter-sm">
+                                                <link rel="stylesheet"
+                                                      href="{% static 'css/reportar.css' %}">
+                                                <div class="col-md-16 mb-9">
+                                                    <div class="card-body">
+
+                                                        <div class="container">
+
 
                                                             <h4 class="d-flex align-items-center mb-3">Reportar
                                                                 Alumno</h4>
+                                                            <form method="POST" action="{% url 'reporte' %}">
+                                                                {% csrf_token %}
+                                                                <div class="form-group">
+                                                                    <div class="col-sm-9 text-secondary">
 
-                                                            <div class="container">
-                                                                <link rel="stylesheet"
-                                                                      href="{% static 'css/reportar.css' %}">
-                                                                <form method="POST" action="{% url 'reporte' %}">
-                                                                    {% csrf_token %}
-                                                                    <div class="form-group">
-                                                                        <div class="col-sm-9 text-secondary">
-
-                                                                            <label for="matricula">
-                                                                                <input
-                                                                                        id="matricula"
-                                                                                        name="matricula"
-                                                                                        value="{{ a.matricula }}"
-                                                                                        type="number"
-                                                                                        style="display: contents">
-                                                                            </label>
-                                                                        </div>
-                                                                        <p>
-                                                                            ¿Cuales han sido los lineamientos no
-                                                                            cumplidos?
-                                                                            <span class="clue">(Marcar al menos uno)</span>
-                                                                        </p>
-
-                                                                        <label
-                                                                        ><input
-                                                                                value="respuesta1"
-                                                                                type="checkbox"
-                                                                                class="input-checkbox"
-                                                                        />No trae cubrebocas</label>
-                                                                        <br>
-                                                                        <label>
-
+                                                                        <label for="matricula">
                                                                             <input
-                                                                                    name="lineamientos"
-                                                                                    value="respuesta2"
-                                                                                    type="checkbox"
-                                                                                    class="input-checkbox"
-                                                                            />No usó gel sanitizante</label>
-                                                                        <br>
-                                                                        <label>
-                                                                            <input
-                                                                                    name="lineamientos"
-                                                                                    value="respuesta3"
-                                                                                    type="checkbox"
-                                                                                    class="input-checkbox"
-                                                                            />No usó el tapete sanitizante</label>
-                                                                        <br>
-                                                                        <label
-                                                                        ><input
-                                                                                name="lineamientos"
-                                                                                value="respuesta4"
-                                                                                type="checkbox"
-                                                                                class="input-checkbox"
-                                                                        />Entró al departamento aún estando el aforo en
-                                                                            su máximo punto</label>
-                                                                        <br>
-                                                                        <label
-                                                                        ><input
-                                                                                name="lineamientos"
-                                                                                value="respuesta4"
-                                                                                type="checkbox"
-                                                                                class="input-checkbox"
-                                                                        />No respetó la sana distancia</label>
-                                                                        <br>
-                                                                        <label
-                                                                        ><input
-                                                                                name="lineamientos"
-                                                                                value="respuesta5"
-                                                                                type="checkbox"
-                                                                                class="input-checkbox"
-                                                                        />No realizó su encuesta semanal</label>
-                                                                        <br>
-                                                                        <label
-                                                                        ><input
-                                                                                name="lineamientos"
-                                                                                value="respuesta6"
-                                                                                type="checkbox"
-                                                                                class="input-checkbox"
-                                                                        />Sigue visitando el campús apesar de que ya se
-                                                                            le avisó su estado de riesgo</label>
-                                                                        <br>
-                                                                        <label
-                                                                        ><input
-                                                                                value="respuesta7"
-                                                                                type="checkbox"
-                                                                                class="input-checkbox"
-                                                                        />Vino días seguidos</label>
-                                                                        <br>
+                                                                                    id="matricula"
+                                                                                    name="matricula"
+                                                                                    value="{{ a.matricula }}"
+                                                                                    type="number"
+                                                                                    style="display: contents">
+                                                                        </label>
                                                                     </div>
+                                                                    <p>
+                                                                        ¿Cuales han sido los lineamientos no
+                                                                        cumplidos?
+                                                                        <span class="clue">(Marcar al menos uno)</span>
+                                                                    </p>
 
+
+                                                                    <input type="hidden" name="respuesta1"
+                                                                           value="0"/>
+                                                                    <label>
+                                                                        <input type="checkbox" name="respuesta1"
+                                                                               value="1" class="input-checkbox"/>
+                                                                        No trae cubrebocas
+                                                                    </label>
+                                                                    <br>
+
+                                                                    <input type="hidden" name="respuesta2"
+                                                                           value="0"/>
+                                                                    <label>
+                                                                        <input type="checkbox" name="respuesta2"
+                                                                               value="1" class="input-checkbox"/>
+                                                                        No usó gel sanitizante
+                                                                    </label>
+                                                                    <br>
+
+                                                                    <input type="hidden" name="respuesta3"
+                                                                           value="0"/>
+                                                                    <label>
+                                                                        <input type="checkbox" name="respuesta3"
+                                                                               value="1" class="input-checkbox"/>
+                                                                        Entró al departamento aún estando el aforo
+                                                                        en
+                                                                        su máximo punto
+                                                                    </label>
+                                                                    <br>
+
+                                                                    <input type="hidden" name="respuesta4"
+                                                                           value="0"/>
+                                                                    <label>
+                                                                        <input type="checkbox" name="respuesta4"
+                                                                               value="1" class="input-checkbox"/>
+                                                                        No respetó la sana distancia
+                                                                    </label>
+                                                                    <br>
+
+                                                                    <input type="hidden" name="respuesta5"
+                                                                           value="0"/>
+                                                                    <label>
+                                                                        <input type="checkbox" name="respuesta5"
+                                                                               value="1" class="input-checkbox"/>
+                                                                        No realizó su encuesta semanal
+                                                                    </label>
+                                                                    <br>
+
+                                                                    <input type="hidden" name="respuesta6"
+                                                                           value="0"/>
+                                                                    <label>
+                                                                        <input type="checkbox" name="respuesta6"
+                                                                               value="1" class="input-checkbox"/>
+                                                                        Sigue visitando el campús apesar de que ya
+                                                                        se
+                                                                        le avisó su estado de riesgo
+                                                                    </label>
+                                                                    <br>
+
+                                                                    <input type="hidden" name="respuesta7"
+                                                                           value="0"/>
+                                                                    <label>
+                                                                        <input type="checkbox" name="respuesta7"
+                                                                               value="1" class="input-checkbox"/>
+                                                                        Vino días seguidos
+                                                                    </label>
+
+                                                                    <br>
                                                                     <div class="form-group">
                                                                         <p>¿Tienes más opciones?</p>
-                                                                        <label for="comments"></label><textarea
-                                                                            id="comments"
-                                                                            class="input-textarea"
-                                                                            name="comment"
-                                                                            placeholder="Ingresa tus comentarios aquí..."
-                                                                    ></textarea>
+                                                                        <label for="comments"><textarea
+                                                                                id="comments"
+                                                                                class="input-textarea"
+                                                                                name="comment"
+                                                                                placeholder="Ingresa tus comentarios aquí..."
+                                                                        ></textarea>
+                                                                        </label>
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <input type="submit" id="submit"
-                                                                               class="submit-button"
-                                                                               onclick="completado()">
-                                                                        Enviar reporte
-                                                                    </div>
-                                                                </form>
-                                                            </div>
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6 mb-3">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                            <h6 class="d-flex align-items-center mb-3"><i
-                                                                    class="material-icons text-info mr-2">assignment</i>Project
-                                                                Status</h6>
-                                                            <small>Web Design</small>
-                                                            <div class="progress mb-3" style="height: 5px">
-                                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                                     style="width: 80%"
-                                                                     aria-valuenow="80" aria-valuemin="0"
-                                                                     aria-valuemax="100"></div>
-                                                            </div>
-                                                            <small>Website Markup</small>
-                                                            <div class="progress mb-3" style="height: 5px">
-                                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                                     style="width: 72%"
-                                                                     aria-valuenow="72" aria-valuemin="0"
-                                                                     aria-valuemax="100"></div>
-                                                            </div>
-                                                            <small>One Page</small>
-                                                            <div class="progress mb-3" style="height: 5px">
-                                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                                     style="width: 89%"
-                                                                     aria-valuenow="89" aria-valuemin="0"
-                                                                     aria-valuemax="100"></div>
-                                                            </div>
-                                                            <small>Mobile Template</small>
-                                                            <div class="progress mb-3" style="height: 5px">
-                                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                                     style="width: 55%"
-                                                                     aria-valuenow="55" aria-valuemin="0"
-                                                                     aria-valuemax="100"></div>
-                                                            </div>
-                                                            <small>Backend API</small>
-                                                            <div class="progress mb-3" style="height: 5px">
-                                                                <div class="progress-bar bg-primary" role="progressbar"
-                                                                     style="width: 66%"
-                                                                     aria-valuenow="66" aria-valuemin="0"
-                                                                     aria-valuemax="100"></div>
-                                                            </div>
+                                                                        <div class="form-group">
+                                                                            <input type="submit" id="submit"
+                                                                                   class="submit-button"
+                                                                                   onclick="completado()">
+                                                                            Enviar reporte
+                                                                        </div>
+                                                            </form>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -288,12 +207,96 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-md-8">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Nombre(s)</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    {{ a.first_name }}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Apellidos</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    {{ a.last_name }}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Correo</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    {{ a.email }}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <h6 class="mb-0">Matricula</h6>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    {{ a.matricula }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row gutter-sm">
+                                        <div class="col-sm-6 mb-3">
 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <h2> Reportes </h2>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">MATRICULA</th>
+                                                        <th scope="col" style="text-align: center">FECHA</th>
+                                                        <th scope="col">CUBREBOCAS</th>
+                                                        <th scope="col">SANITIZANTE</th>
+                                                        <th scope="col">COMENTARIOS</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for foo in reporte %}
+
+                                                        <tr>
+                                                            <th scope="row"
+                                                                style="text-align: center">{{ foo.matricula_reportado }}</th>
+                                                            <th scope="row"
+                                                                style="text-align: center">{{ foo.hora }}</th>
+                                                            <th scope="row"
+                                                                style="text-align: center">{{ foo.NoCubrebocas }}</th>
+                                                            <th scope="row"
+                                                                style="text-align: center">{{ foo.GelSanitizante }}</th>
+                                                            <th scope="row"
+                                                                style="text-align: center">{{ foo.Comentarios }} </th>
+
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    </div>
                 {% endfor %}
-            </div>
             </body>
         {% else %}
             <h1>Alumno no encontrado</h1>
