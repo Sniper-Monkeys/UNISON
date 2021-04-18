@@ -40,38 +40,54 @@
                     </div>
                 </div>
                 <div class="info">
- <!----------------------------------------------------------------------------------------------------------------------
-*********************************************************************************************************************-->
+                    <!----------------------------------------------------------------------------------------------------------------------
+                   *********************************************************************************************************************-->
+                    <form method="POST" action="{% url 'encuestas' %}"> {% csrf_token %}
+                        <div class="rb-box">
+                            <!-- Radio Button Module -->
+                            <div id="rb-1" class="rb">
+                                <div class="rb-tab" data-value="1">
+                                    <div class="rb-spot">
+                                        <span class="rb-txt">Si</span>
+                                    </div>
+                                </div>
+                                <div class="rb-tab rb-tab-active" data-value="0">
+                                    <div class="rb-spot">
+                                        <span class="rb-txt">No</span>
+                                    </div>
+                                </div>
+                            </div>
 
 
-
-<div class="rb-box">
-
-  <!-- Radio Button Module -->
-  <p>1. De la escala de 1 a 5, ¿Qué tanto te cuidaste esta semana?</p>
-  <div id="rb-1" class="rb">
-    <div class="rb-tab rb-tab-active" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
+                            <!-- Radio Button Module -->
+                            <p>2. ¿Ha presentado síntomas de gripe en la última semana?</p>
+                            <div id="rb-2" class="rb">
+                                <div class="rb-tab" data-value="1">
+                                    <div class="rb-spot">
+                                        <span class="rb-txt">1</span>
+                                    </div>
+                                </div>
+                                <div class="rb-tab rb-tab-active" data-value="2">
+                                    <div class="rb-spot">
+                                        <span class="rb-txt">2</span>
+                                    </div>
+                                </div>
+                                <div class="rb-tab" data-value="3">
+                                    <div class="rb-spot">
+                                        <span class="rb-txt">3</span>
+                                    </div>
+                                </div>
+                                <div class="rb-tab" data-value="4">
+                                    <div class="rb-spot">
+                                        <span class="rb-txt">4</span>
+                                    </div>
+                                </div>
+                                <div class="rb-tab" data-value="5">
+                                    <div class="rb-spot">
+                                        <span class="rb-txt">5</span>
+                                    </div>
+                                </div>
+                            </div>
 
   <!-- Radio Button Module -->
   <p>2. De la escala de 1 a 5, ¿Qué tanto te cuidaste esta semana?</p>
@@ -177,18 +193,19 @@
     </div>
   </div>
 
-  <!-- Button -->
-  <div class="button-box">
-    <button class="button trigger">Mandar encuesta</button>
-  </div>
- <!----------------------------------------------------------------------------------------------------------------------
-*********************************************************************************************************************-->
-</div>
+                            <!-- Button -->
+                            <div class="button-box">
+                                <button type= "submit" class="submit-button">Mandar encuesta</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+        <!----------------------------------------------------------------------------------------------------------------------
+       *********************************************************************************************************************-->
         </body>
-        {%endif %}
+    {% endif %}
 {% else %}
     <body>
 

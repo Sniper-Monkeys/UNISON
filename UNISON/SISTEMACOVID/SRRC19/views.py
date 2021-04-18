@@ -124,7 +124,7 @@ def Mandar_correo(request):
         asunto = "¡Persona en Estado de Riesgo!"
         mensaje = "La(s) persona(s): " + t.username + " está(n) en estado de riesgo"
         email_desde = settings.EMAIL_HOST_USER
-        email_para = ["martinxf22@gmail.com"]  # AGREGAR OTRO CORREO ELECTRONICO
+        email_para = [User.objects.filter(ocupacion= 'P')]  # AGREGAR OTRO CORREO ELECTRONICO
         send_mail(asunto, mensaje, email_desde, email_para, fail_silently=False)
         messages.success(request, "Mensaje enviado correctamente.")
     return render(request, 'index.html')
@@ -172,5 +172,11 @@ def Generar_Reporte(request):
         messages.success(request, 'Se ha mandado el reporte correctamente')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
+def Generar_Encuesta(request):
+    if request.method == 'POST' and request.is_ajax():
+        print(request.POST)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
