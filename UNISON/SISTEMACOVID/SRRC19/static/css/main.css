@@ -1,4 +1,4 @@
-    body,
+       body,
     html {
 
       height: 100%;
@@ -11,6 +11,9 @@
 
     #sidebar {
       padding-left: 0;
+    }
+    label {
+      color: honeydew;
     }
     /*
  * Off Canvas at medium breakpoint
@@ -107,8 +110,8 @@ body {
   filter: drop-shadow(1px 2px 5px rgba(0,0,0,.3));
   box-shadow:
     0 2px 2px rgba(17, 20, 189, 0.5),
-    0 0 5px rgba(243,49,128,.15),
-    0 0 4px rgba(0,0,0,.35),
+    0 0px 5px rgba(243,49,128,.15),
+    0 0px 4px rgba(0,0,0,.35),
     0 5px 20px rgba(243,49,128,.25),
     0 15px 50px rgba(32, 33, 173, 0.75),
     inset 0 0 15px rgba(255,255,255,.05);
@@ -194,5 +197,30 @@ button {
 button:hover {
   box-shadow: 0 3px 5px -5px rgba(0, 0, 0, 0.3);
   color: #6f6f6f;
+}
+
+.cb-tab {
+  display: inline-block;
+  position: relative;
+  width: 20%;
+}
+
+.cb-tab-active .cb-spot {
+  background: rgba(0,0,0,.35);
+  border: 2px solid rgba(217, 0, 255, 0.6);
+}
+
+.cb-spot {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.3);
+  border-radius: 100%;
+  cursor: pointer;
+  transition: ease .5s;
 }
 

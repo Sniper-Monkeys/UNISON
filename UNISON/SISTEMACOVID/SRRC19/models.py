@@ -64,24 +64,25 @@ class Encuesta(models.Model):
     fecha = models.DateTimeField(default=datetime.now(), blank=True)
 
     # Problemas de salud
+   
     positivoCovid = models.BooleanField(default=False)
-    gripe = models.BooleanField(default=False)
-    fiebre = models.BooleanField(default=False)
-    tos = models.BooleanField(default=False)
-    problemasRespiratorios = models.BooleanField(default=False)
-    dolorCabeza = models.BooleanField(default=False)
-    dolorMuscular = models.BooleanField(default=False)
-    dolorGarganta = models.BooleanField(default=False)
-    diarrea = models.BooleanField(default=False)
-    perdidaOlfato = models.BooleanField(default=False)
-    perdidaGusto = models.BooleanField(default=False)
-    cansancio = models.BooleanField(default=False)
+    fiebre = models.IntegerField( default=0)
+    gripa = models.IntegerField( default=0)
+    tos = models.IntegerField( default=0)
+    problemasRespiratorios = models.IntegerField( default=0)
+    dolorCabeza = models.IntegerField( default=0)
+    dolorMuscular = models.IntegerField( default=0)
+    dolorGarganta = models.IntegerField( default=0)
+    diarrea = models.IntegerField( default=0)
+    perdidaOlfato = models.IntegerField( default=0)
+    perdidaGusto = models.IntegerField( default=0)
+    cansancio = models.IntegerField( default=0)
     comentariosdificultad = models.CharField(max_length=255, default="...")
-    problemaCardiovascular = models.BooleanField(default=False)
-    asma = models.BooleanField(default=False)
-    cancer = models.BooleanField(default=False)
-    diabetes = models.BooleanField(default=False)
-    bronquitis = models.BooleanField(default=False)
+    problemaCardiovascular = models.IntegerField( default=0)
+    asma = models.IntegerField( default=0)
+    cancer = models.IntegerField( default=0)
+    diabetes = models.IntegerField( default=0)
+    bronquitis = models.IntegerField( default=0)
     otrosProblemas = models.CharField(max_length=255, default="...")
 
     # Paises
@@ -95,7 +96,8 @@ class Encuesta(models.Model):
     parque = models.BooleanField(default=False)
     hospital = models.BooleanField(default=False)
     otrosLugaresPublicos = models.CharField(max_length=255, default="...")
-
+    def __str__(self):
+        return self.matricula_encuestado
 
 class Reporte(models.Model):
     matricula_reportado = models.CharField(max_length=50, default='xxxxxxxx')

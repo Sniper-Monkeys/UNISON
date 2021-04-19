@@ -174,8 +174,26 @@ def Generar_Reporte(request):
 
 
 def Generar_Encuesta(request):
-    if request.method == 'POST' and request.is_ajax():
+    if request.method == 'POST':
+        encuesta = Encuesta.objects.create(matricula_encuestado=request.user.matricula)
+        encuesta.nombre_reportado = request.user.get_full_name()
+        encuesta.fecha = datetime.now()
+
+        encuesta.positivoCovid = bool(request.POST.get('respuesta1'))
+        encuesta.gripa = request.POST.get('respuesta2')
+        encuesta.fiebre = request.POST.get('respuesta3')
+        encuesta.tos = request.POST.get('respuesta4')
+        encuesta.problemasRespiratorios = request.POST.get('respuesta5')
+        encuesta.dolorCabeza = request.POST.get('respuesta6')
+        encuesta.dolorMuscular = request.POST.get('respuesta7')
+        encuesta.dolorGarganta = request.POST.get('respuesta8')
+        encuesta.perdidaOlfato = request.POST.get('respuesta9')
+        encuesta.perdidaGusto= request.POST.get('respuesta10')
+        encuesta.cansancio = request.POST.get('respuesta11')
+        encuesta.PersonasContacto = '2'
         print(request.POST)
+        encuesta.save()
+            # Valor Final
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
