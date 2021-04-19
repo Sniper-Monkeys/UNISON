@@ -159,8 +159,8 @@ def Reportar(request):
 def Generar_Reporte(request):
     if request.method == 'POST':
         reporte = Reporte.objects.create(matricula_reportado=request.POST.get('matricula'))
-        reporte.NoCubrebocas = request.POST.get('respuesta1')
         reporte.hora = datetime.now()
+        reporte.NoCubrebocas = request.POST.get('respuesta1')
         reporte.GelSanitizante = request.POST.get('respuesta2')
         reporte.NoRespetarAforo = request.POST.get('respuesta3')
         reporte.NoRespetarSanaDistancia = request.POST.get('respuesta4')

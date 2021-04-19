@@ -86,8 +86,8 @@ class Encuesta(models.Model):
     otrosProblemas = models.CharField(max_length=255, default="...")
 
     # Paises
-    PersonasContacto = (('1', '1-5'), ('2', '5-10'), ('3', '10-20'), ('4', '20-50'), ('5', 'Más de 50'))
-    personasContacto = models.CharField(max_length=1, choices=PersonasContacto, default='1')
+    PersonasContacto = ((1, '1-5'), (2, '5-10'), (3, '10-20'), (4, '20-50'), (5, 'Más de 50'))
+    personasContacto = models.IntegerField(choices=PersonasContacto, default=1)
 
     # LugaresPublicos
     cine = models.BooleanField(default=False)
