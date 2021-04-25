@@ -176,6 +176,7 @@ def Generar_Reporte(request):
 def Generar_Encuesta(request):
     if request.method == 'POST':
         encuesta = Encuesta.objects.create(matricula_encuestado=request.user.matricula)
+        print(request.user.matricula)
         encuesta.nombre_reportado = request.user.get_full_name()
         encuesta.fecha = datetime.now()
 
@@ -191,7 +192,37 @@ def Generar_Encuesta(request):
         encuesta.perdidaGusto= request.POST.get('respuesta10')
         encuesta.cansancio = request.POST.get('respuesta11')
         encuesta.PersonasContacto = '2'
+
+        if not request.POST.get("cardiovascular") is None:
+            encuesta.problemaCardiovascular = 1
+        if not request.POST.get("asma") is None:
+            encuesta.asma = 1
+        if not request.POST.get("cancer") is None:
+            encuesta.cancer = 1
+        if not request.POST.get("diabetes") is None:
+            encuesta.diabetes = 1
+        if not request.POST.get("bronquitis") is None:
+            encuesta.bronquitis = 1
+        if not request.POST.get("otro") is None:
+            encuesta.otrosProblemas = 1
+
+        if not request.POST.get("cine") is None:
+            encuesta.cine = 1
+        if not request.POST.get("centro") is None:
+            encuesta.centroComercial = 1
+        if not request.POST.get("restaurante") is None:
+            encuesta.restaurante = 1
+        if not request.POST.get("parque") is None:
+            encuesta.parque = 1
+        if not request.POST.get("hospital") is None:
+            encuesta.hospital = 1
+        if not request.POST.get("otro") is None:
+            encuesta.otrosLugaresPublicos = 1
+
+
+
         print(request.POST)
+        #GUARDAR SIEMPRE Y CUANDO LAS RESPUESTAS NO SEAN NULL
         encuesta.save()
             # Valor Final
 

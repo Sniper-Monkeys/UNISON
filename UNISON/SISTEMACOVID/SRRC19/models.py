@@ -78,11 +78,12 @@ class Encuesta(models.Model):
     perdidaGusto = models.IntegerField( default=0)
     cansancio = models.IntegerField( default=0)
     comentariosdificultad = models.CharField(max_length=255, default="...")
-    problemaCardiovascular = models.IntegerField( default=0)
-    asma = models.IntegerField( default=0)
-    cancer = models.IntegerField( default=0)
-    diabetes = models.IntegerField( default=0)
-    bronquitis = models.IntegerField( default=0)
+
+    problemaCardiovascular = models.BooleanField(default=False)
+    asma = models.BooleanField(default=False)
+    cancer = models.BooleanField(default=False)
+    diabetes = models.BooleanField(default=False)
+    bronquitis = models.BooleanField(default=False)
     otrosProblemas = models.CharField(max_length=255, default="...")
 
     # Paises
