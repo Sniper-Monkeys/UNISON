@@ -1,12 +1,11 @@
 from django.conf import settings
-from django.contrib import messages
 from django.core.mail import send_mail, send_mass_mail
 from django.db import models
-from django.db.models import signals
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from datetime import datetime
 from django.shortcuts import render, redirect
+
 # python manage.py createmigrate <- Para almacenar modelo de base de datos
 # python manage.py createsuperuser <- Para agregar un super usuario
 # python manage.py migrate <- Para actualizar modelo de base de datos
@@ -16,25 +15,31 @@ from django.contrib.auth.models import AbstractUser, Group
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 
-
 class User(AbstractUser):
-    matricula = models.CharField(max_length=50, default='xxxxxxxx')
+    matricula = models.CharField(max_length=50, default='xxxxxxxx',verbose_name='Matricula')
     OCUPACION = (('A', 'Alumno'), ('D', 'Docente'), ('P', 'Personal Administrativo'))
     ocupacion = models.CharField(max_length=1, choices=OCUPACION, default='A')
     RIESGO = (('R', 'Rojo'), ('N', 'Naranja'), ('A', 'Amarillo'), ('V', 'Verde'))
-    riesgo = models.CharField(max_length=1, choices=RIESGO, default='V')
+    riesgo = models.CharField(max_length=1, choices=RIESGO, default='V', verbose_name='Riesgo')
     CORREOMANDADO = (('S', 'SI'), ('N', 'NO'))
     CorreoMandado = models.CharField(max_length=1, choices=CORREOMANDADO, default='N')
-
+    puntos = models.IntegerField(default=0)
     class Meta:
         ordering = ['riesgo']
-
 
 @receiver(pre_save, sender=User)
 def signal(sender, instance, **kwargs):
     try:
         old_instance = sender.objects.get(pk=instance.pk)
+        #SISTEMA PARA MANDAR CORREO CUANDO LOS PUNTOS DEL USUARIO SEAN MAYOR A X PUNTOS
+        if old_instance.puntos != instance.puntos:
+            if instance.puntos >= 50:
+                alumno = User.objects.get(matricula=instance.matricula)
+                alumno.riesgo = 'R'
+                alumno.save()
+        #SISTEMA PARA MANDAR CORREO CUANDO EL USUARIO ESTÉ EN ROJO
         if old_instance.riesgo != instance.riesgo:
+
             if instance.riesgo == 'R':
                 asunto = "¡Persona en Estado de Riesgo Rojo!"
                 mensaje = render_to_string('email_template.html',
@@ -53,14 +58,14 @@ def signal(sender, instance, **kwargs):
                     send_mail(asunto, mensaje, email_desde, emails_para, fail_silently=False)
                 elif len(emails_para) > 4:
                     send_mass_mail(asunto, mensaje, email_desde, emails_para)
+
     except sender.DoesNotExist:
         pass
-
 
 class Encuesta(models.Model):
     # Información alumno
     matricula_encuestado = models.CharField(max_length=50, default='xxxxxxxx')
-    nombre_reportado = models.CharField(max_length=255, default='xxxxxxxx')
+    nombre_encuestado = models.CharField(max_length=255, default='xxxxxxxx')
     fecha = models.DateTimeField(default=datetime.now(), blank=True)
 
     # Problemas de salud

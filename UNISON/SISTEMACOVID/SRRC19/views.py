@@ -159,6 +159,7 @@ def Reportar(request):
 def Generar_Reporte(request):
     if request.method == 'POST':
         reporte = Reporte.objects.create(matricula_reportado=request.POST.get('matricula'))
+
         reporte.hora = datetime.now()
         reporte.NoCubrebocas = request.POST.get('respuesta1')
         reporte.GelSanitizante = request.POST.get('respuesta2')
@@ -169,13 +170,17 @@ def Generar_Reporte(request):
         reporte.AsistirDiasSeguidos = request.POST.get('respuesta7')
         reporte.Comentarios = request.POST.get('comment')
         reporte.save()
+        alumno = User.objects.all().get(matricula=request.POST.get('matricula'))
+        alumno.puntos += 25
+        alumno.save()
         messages.success(request, 'Se ha mandado el reporte correctamente')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def Generar_Encuesta(request):
     if request.method == 'POST':
-        encuesta = Encuesta.objects.create(matricula_encuestado=request.user.matricula)
+        encuesta = Encuesta.objects.create(matricula_encuestado=request.user.matricula,nombre_encuestado=request.user.get_full_name())
+
         print(request.user.matricula)
         encuesta.nombre_reportado = request.user.get_full_name()
         encuesta.fecha = datetime.now()
@@ -219,13 +224,19 @@ def Generar_Encuesta(request):
         if not request.POST.get("otro") is None:
             encuesta.otrosLugaresPublicos = 1
 
-
-
         print(request.POST)
         #GUARDAR SIEMPRE Y CUANDO LAS RESPUESTAS NO SEAN NULL
         encuesta.save()
             # Valor Final
 
+        #RECORRER TODAS LAS RESPUESTAS Y SUMARLAS PARA OBTENER UN PUNTUAJE
+        puntos = 0
+        alumno = User.objects.all().get(matricula=request.user.matricula)
+        for k, v in request.POST.items():
+            if not k == 'csrfmiddlewaretoken':
+                puntos += int(v)
+        alumno.puntos = puntos
+        alumno.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
