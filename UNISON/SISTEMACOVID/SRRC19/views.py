@@ -235,7 +235,7 @@ def Generar_Encuesta(request):
         for k, v in request.POST.items():
             if not k == 'csrfmiddlewaretoken':
                 puntos += int(v)
-        alumno.puntos = puntos
+        alumno.puntos += puntos
         alumno.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
