@@ -59,10 +59,6 @@
       }
     }
 
-    .card {
-      overflow: hidden;
-    }
-
     .card-text {
         font-size: xx-large;
     }
