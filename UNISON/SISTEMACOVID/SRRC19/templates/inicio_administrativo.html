@@ -4,7 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" value="notranslate">
-    <link rel="shortcut icon" href="/images/cp_ico.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script rel="script" src="{% static 'js/administrativo.js' %}"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -12,10 +14,6 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
-    {% load static %}
-
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
 
     <meta charset="UTF-8">
     <title>Mandar correo</title>
@@ -24,13 +22,13 @@
 <body style="background-color: #ffffff">
 {% if user.is_authenticated %}
     {% if user.ocupacion ==  'P' %} <!-- ************************************************************************* -->
-        <link rel="stylesheet" href="{% static 'css/docente.css' %}">
+        <link rel="stylesheet" href="{% static 'css/administrativo.css' %}">
         <div class="wrapper">
             <div class="sidebar">
                 <h2>SRRC-19</h2>
-                <ul>
-                    <li><a href="{% url 'inicioPpagina' %}"><i class="fas fa-home"></i>Menú inicio</a></li>
-                    <li><a href="{% url 'perfilpagina' %}"><i class="fas fa-exclamation-circle"></i>Perfil</a></li>
+                <ul class="tabs">
+                    <li><a href="#Inicio"><i class="fas fa-home"></i>Menú inicio</a></li>
+                    <li><a href="#AlumnosLCC"><i class="fas fa-exclamation-circle"></i>Alumnos LCC</a></li>
                     <li><a href="{% url 'buscarpagina' %}"><i class="fas fa-exclamation-circle"></i>Buscar Alumno</a>
                     </li>
                 </ul>
@@ -40,14 +38,62 @@
                     <div class>
                         <form method="POST" action="{% url 'salidapagina' %}">
                             <h1>
-                                Bienvendido {{ user.username }}
-                                <input type="submit" value="Cerrar Sesión" class="btn btn-dark"/>
+                                <div class="row">
+                                        <div class="col-md-8">
+                                            <h1>Hay un total de {{ contagiados }} en estado de riesgo con un promedio de {{ promedio }} %</h1>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="text-right">
+                                                <input type="submit" value="Cerrar Sesión" class="btn btn-dark"/>
+                                            </div>
+                                        </div>
+                                </div>
+
                             </h1>
                             {% csrf_token %}
                         </form>
                     </div>
                 </div>
-                <div class="info">
+                 <div class="secciones">
+
+                        <div class="info" id="Inicio">
+
+
+                            <h3 class="display-3 hidden-xs-down">
+                                ¡Informate sobre el Covid!
+                            </h3>
+                            <p style="font-size: xx-large">flknsdlkfnldsf.</p>
+                            <div class ="row">
+
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="card">
+                                            <img src="https://i.blogs.es/376b75/mexico-se-pinta-de-amarillo-en-semaforo-por-covid-y-sonora-se-convierte-en-el-tercer-estado-en-semaforo-verde/840_560.jpg"
+                                                 class="card-img" alt="Semaforo Sonora">
+                                            <div class="card-img-overlay">
+                                                <h1 class="card-title" style="color: #000000; text-align: center">Semaforo</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6">
+                                         <canvas id="RiesgoCovid" width="200" height="200"></canvas>
+                                      </div>
+
+                                </div>
+
+
+                            <!--/row-->
+
+                            <hr>
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://covid19data.unison.mx/#mapa"></iframe>
+                            </div>
+
+                            <!--/row-->
+
+                        </div>
+                        <div class="info" id="AlumnosLCC">
+
                     <h1>Hay un total de {{ contagiados }} en estado de riesgo</h1>
 
                     <form action="/contactar/" method="POST"> {% csrf_token %}
@@ -100,6 +146,9 @@
                         </div>
                     </div>
                 </div>
+
+                     </div>
+
             </div>
         </div>
         </body>
@@ -119,67 +168,53 @@
     </div>
     </body>
 {% endif %}
-<script rel="script" src="{% static 'js/main.js' %}"></script>
-<script>
-    // sandbox disable popups
-    if (window.self !== window.top && window.name != "view1") {
-        window.alert = function () {
-            /*disable alert*/
-        };
-        window.confirm = function () {
-            /*disable confirm*/
-        };
-        window.prompt = function () {
-            /*disable prompt*/
-        };
-        window.open = function () {
-            /*disable open*/
-        };
-    }
 
-    // prevent href=# click jump
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-            var links = document.getElementsByTagName("A");
-            for (var i = 0; i < links.length; i++) {
-                if (links[i].href.indexOf("#") != -1) {
-                    links[i].addEventListener("click", function (e) {
-                        console.debug("prevent href=# click");
-                        if (this.hash) {
-                            if (this.hash == "#") {
-                                e.preventDefault();
-                                return false;
-                            } else {
-                                /*
-                                    var el = document.getElementById(this.hash.replace(/#/, ""));
-                                    if (el) {
-                                      el.scrollIntoView(true);
-                                    }
-                                    */
-                            }
-                        }
-                        return false;
-                    });
-                }
-            }
-        },
-        false
-    );
-</script>
 
 <!--scripts loaded here-->
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
 
 
 <script>
-    $(document).ready(function () {
-        $("[data-toggle=offcanvas]").click(function () {
-            $(".row-offcanvas").toggleClass("active");
-        });
+    var ctx= document.getElementById("RiesgoCovid").getContext("2d");
+    var Grafica= new Chart(ctx,{
+        type: 'pie',
+        data:{
+          labels:["Riesgo Alto", "Riesgo Bajo"],
+          datasets: [
+              {
+                data: [{{ promedio }},{{ promedio2 }}],
+                backgroundColor:[
+                    "#f52e2e",
+                    "#44a044"
+                ]
+              }
+          ]
+        },
+         options: {
+             responsive: true,
+             plugins: {
+                 legend: {
+                     position: 'bottom',
+                      labels:{
+                         font: {
+                             size: 18
+                         }
+                     }
+                   },
+                 title: {
+                     display: true,
+                        text: 'RIESGO COVID-19 ALUMNOS LCC',
+                        position: 'top',
+                        font: {
+                            size: 25
+                        }
+
+                }
+
+             },
+
+        }
     });
 </script>
 

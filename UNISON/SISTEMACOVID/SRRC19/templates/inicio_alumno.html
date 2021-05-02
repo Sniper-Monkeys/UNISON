@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" value="notranslate">
+    <meta name="google" >
 
      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script rel="script" src="{% static 'js/main.js' %}"></script>
@@ -44,6 +44,7 @@
                         <div class>
                             <form method="POST" action="{% url 'salidapagina' %}">
                                 <h1>
+
                                     <div class="row">
                                         <div class="col-md-8">Bienvenido {{ user.username }}. En el edificio, hay un promedio total de {{ promedio }}%
 
@@ -54,6 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </h1>
                                 {% csrf_token %}
                             </form>
