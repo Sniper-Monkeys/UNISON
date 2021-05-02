@@ -18,6 +18,7 @@ from django.urls import path
 from UNISON.SISTEMACOVID.SRRC19.views import inicio, contactar, ingresar, perfil, salida, Mandar_correo
 from UNISON.SISTEMACOVID.SRRC19.views import Realizar_Encuesta, Buscar_Alumno, Perfil_Buscado, Reportar, Generar_Reporte
 from UNISON.SISTEMACOVID.SRRC19.views import Inicio_Alumno, Inicio_Docente, Inicio_Administrativo, Generar_Encuesta
+from UNISON.SISTEMACOVID.SRRC19.views import Eliminar
 
 urlpatterns = [
     path('admin/', admin.site.urls ),
@@ -36,4 +37,5 @@ urlpatterns = [
     path('reportar/', Reportar, name="reportar"),
     path('generareporte/', Generar_Reporte, name="reporte"),
     path('generarencuesta/', Generar_Encuesta,name="encuestas"),
+    path('eliminar/<int:id>', Eliminar, name="eliminar"),
 ]

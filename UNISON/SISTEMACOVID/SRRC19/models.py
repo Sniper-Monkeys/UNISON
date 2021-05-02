@@ -27,7 +27,7 @@ class User(AbstractUser):
     puntos = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ['riesgo']
+        ordering = ['ocupacion']
 
     def CambiarARojo(self):
         self.riesgo = 'R'
@@ -39,8 +39,15 @@ def signal(sender, instance, **kwargs):
         old_instance = sender.objects.get(pk=instance.pk)
         # SISTEMA PARA MANDAR CORREO CUANDO LOS PUNTOS DEL USUARIO SEAN MAYOR A X PUNTOS
         if old_instance.puntos != instance.puntos:
-            if instance.puntos >= 50:
+            if instance.puntos >= 80:
                 instance.riesgo = 'R'
+            elif 60 <= instance.puntos > 80:
+                instance.riesgo = 'N'
+            elif 30 <= instance.puntos > 60:
+                instance.riesgo = 'A'
+            else:
+                instance.riesgo = 'V'
+
         # SISTEMA PARA MANDAR CORREO CUANDO EL USUARIO ESTÉ EN ROJO
         if old_instance.riesgo != instance.riesgo:
             if instance.riesgo == 'R':
@@ -154,6 +161,7 @@ class AlumnoBuscado(models.Model):
 
 class Profesores(models.Model):
     """Person object"""
+
     Docente = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,

@@ -4,17 +4,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" value="notranslate">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script rel="script" src="{% static 'js/administrativo.js' %}"></script>
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
-
     <meta charset="UTF-8">
     <title>Mandar correo</title>
 
@@ -39,14 +33,15 @@
                         <form method="POST" action="{% url 'salidapagina' %}">
                             <h1>
                                 <div class="row">
-                                        <div class="col-md-8">
-                                            <h1>Hay un total de {{ contagiados }} en estado de riesgo con un promedio de {{ promedio }} %</h1>
+                                    <div class="col-md-8">
+                                        <h1>Hay un total de {{ contagiados }} en estado de riesgo con un promedio
+                                            de {{ promedio }} %</h1>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-right">
+                                            <input type="submit" value="Cerrar Sesión" class="btn btn-dark"/>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="text-right">
-                                                <input type="submit" value="Cerrar Sesión" class="btn btn-dark"/>
-                                            </div>
-                                        </div>
+                                    </div>
                                 </div>
 
                             </h1>
@@ -54,16 +49,16 @@
                         </form>
                     </div>
                 </div>
-                 <div class="secciones">
+                <div class="secciones">
 
-                        <div class="info" id="Inicio">
+                    <div class="info" id="Inicio">
 
 
-                            <h3 class="display-3 hidden-xs-down">
-                                ¡Informate sobre el Covid!
-                            </h3>
-                            <p style="font-size: xx-large">flknsdlkfnldsf.</p>
-                            <div class ="row">
+                        <h3 class="display-3 hidden-xs-down">
+                            ¡Informate sobre el Covid!
+                        </h3>
+                        <p style="font-size: xx-large">flknsdlkfnldsf.</p>
+                        <div class="row">
 
                                     <div class="col-xl-6 col-lg-6">
                                         <div class="card">
@@ -78,79 +73,76 @@
                                          <canvas id="RiesgoCovid" width="200" height="200"></canvas>
                                       </div>
 
-                                </div>
-
-
-                            <!--/row-->
-
-                            <hr>
-                            <!-- 16:9 aspect ratio -->
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://covid19data.unison.mx/#mapa"></iframe>
-                            </div>
-
-                            <!--/row-->
-
                         </div>
-                        <div class="info" id="AlumnosLCC">
 
-                    <h1>Hay un total de {{ contagiados }} en estado de riesgo</h1>
 
-                    <form action="/contactar/" method="POST"> {% csrf_token %}
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Alumno(s) en riesgo</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput"
-                                   placeholder="Introduce un alumno en riesgo, se mandará un correo" name="txtMensaje">
+                        <!--/row-->
+
+                        <hr>
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://covid19data.unison.mx/#mapa"></iframe>
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Enviar" onclick="fireSweetAlert"/>
-                        {% if messages %}
-                            <ul class="messages">
-                                {% for message in messages %}
-                                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
 
-                    </form>
-                    <div>
-                        <div class="content">
-                            {% block content %}
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Matricula</th>
-                                        <th scope="col">Apellidos</th>
-                                        <th scope="col">Nombre(s)</th>
-                                        <th scope="col">Estado de Riesgo</th>
-                                        <th scope="col">Control</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for alumno in alumnos %}
-                                        <tr>
-                                            <th scope="row" style="text-align: center">{{ alumno.matricula }}</th>
-                                            <th scope="row" style="text-align: center">{{ alumno.last_name }}</th>
-                                            <th scope="row" style="text-align: center">{{ alumno.first_name }}</th>
-                                            <th scope="row" style="text-align: center">{{ alumno.riesgo }} </th>
+                        <!--/row-->
 
-                                            <th scope="row">
-                                                <button type="submit" value="Submit" class="btn btn-warning">REPORTAR
-                                                </button>
+                    </div>
+                    <div class="info" id="AlumnosLCC">
+
+                        <h1>Hay un total de {{ contagiados }} en estado de riesgo</h1>
+
+                        <div>
+                            <div class="content">
+                                {% block content %}
+                                    <h2 style="text-align: center">Buscar un alumno...</h2>
+                                    <input type="text" id="myInput" onkeyup="myFunction()"
+                                           placeholder="Ingresa una matrícula" title="Ingresa una matrícula">
+                                    <table id="myTable" class="table table-striped sortable">
+                                        <thead>
+                                        <tr class="header">
+                                            <th scope="col" style="text-align: center"><a
+                                                    class="btn bg-info encabezado" data-sortas="case-insensitive">Matricula</a>
                                             </th>
+                                            <th scope="col" style="text-align: center"><a
+                                                    class="btn bg-info encabezado">Apellidos</a>
+                                            </th>
+                                            <th scope="col" style="text-align: center"><a
+                                                    class="btn bg-info encabezado">Nombre(s)</a>
+                                            </th>
+                                            <th scope="col" style="text-align: center"><a
+                                                    class="btn bg-info encabezado">Estado
+                                                de Riesgo</a></th>
+                                            <th scope="col" style="text-align: center"><a
+                                                    class="btn bg-info encabezado">Control</a>
                                         </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            {% endblock %}
+                                        </thead>
+                                        <tbody>
+                                        {% for alumno in alumnos %}
+                                            <tr>
+                                                <th scope="row" style="text-align: center">{{ alumno.matricula }}</th>
+                                                <th scope="row" style="text-align: center">{{ alumno.last_name }}</th>
+                                                <th scope="row" style="text-align: center">{{ alumno.first_name }}</th>
+                                                <th scope="row" style="text-align: center">{{ alumno.riesgo }} </th>
 
+                                                <th scope="row" style="text-align: center">
+                                                    <a href="http://127.0.0.1:8000/encontrado/?busqueda={{ alumno.matricula }}"
+                                                       class="btn btn-info" role="button">Ver perfil</a>
+                                                </th>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% endblock %}
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                     </div>
+                </div>
 
             </div>
         </div>
+
         </body>
     {% endif %}
 {% else %}
@@ -172,50 +164,78 @@
 
 <!--scripts loaded here-->
 
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script rel="script" src="{% static 'js/administrativo.js' %}"></script>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("th")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
 <script>
-    var ctx= document.getElementById("RiesgoCovid").getContext("2d");
-    var Grafica= new Chart(ctx,{
+    var ctx = document.getElementById("RiesgoCovid").getContext("2d");
+    var Grafica = new Chart(ctx, {
         type: 'pie',
-        data:{
-          labels:["Riesgo Alto", "Riesgo Bajo"],
-          datasets: [
-              {
-                data: [{{ promedio }},{{ promedio2 }}],
-                backgroundColor:[
-                    "#f52e2e",
-                    "#44a044"
-                ]
-              }
-          ]
+        data: {
+            labels: ["riesgo Alto", "riesgo Bajo"],
+            datasets: [
+                {
+                    data: [{{ promedio }}, {{ promedio2 }}],
+                    backgroundColor: [
+                        "#f52e2e",
+                        "#44a044"
+                    ]
+                }
+            ]
         },
-         options: {
-             responsive: true,
-             plugins: {
-                 legend: {
-                     position: 'bottom',
-                      labels:{
-                         font: {
-                             size: 18
-                         }
-                     }
-                   },
-                 title: {
-                     display: true,
-                        text: 'RIESGO COVID-19 ALUMNOS LCC',
-                        position: 'top',
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
                         font: {
-                            size: 25
+                            size: 18
                         }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'RIESGO COVID-19 ALUMNOS LCC',
+                    position: 'top',
+                    font: {
+                        size: 25
+                    }
 
                 }
 
-             },
+            },
 
         }
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 
 </html>

@@ -5,18 +5,48 @@
     <meta charset="UTF-8">
 
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7"></script>
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css">
     <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <style>
+        div.scrollmenu {
+            overflow: auto;
+            white-space: nowrap;
+        }
+
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+
+        div.scrollmenu a:hover {
+            background-color: #ffcaca;
+            color: black;
+        }
+    </style>
+
 
     <title>Perfil</title>
 </head>
 <body style="background-color: #eaeaea">
 
 {% if user.is_authenticated %}
-    {% if user.ocupacion ==  'D' %}
+    {% if user.ocupacion !=  'A' %}
+        {% if user.ocupacion == 'D' %}
+            <link rel="stylesheet" href="{% static 'css/docente.css' %}">
+        {% else %}
+            <link rel="stylesheet" href="{% static 'css/administrativo.css' %}">
+
+        {% endif %}
+
         {% if alumno %}
             <link rel="stylesheet" href="{% static 'css/docente.css' %}">
             <div class="wrapper">
@@ -24,9 +54,6 @@
                     <h2>SRRC-19</h2>
                     <ul>
                         <li><a href="{% url 'inicioDpagina' %}"><i class="fas fa-home"></i>Menú inicio</a></li>
-                        <li><a href="{% url 'perfilpagina' %}"><i class="fas fa-exclamation-circle"></i>Perfil</a></li>
-                        <li><a href="{% url 'buscarpagina' %}"><i class="fas fa-exclamation-circle"></i>Buscar
-                            Alumno</a></li>
                     </ul>
                 </div>
                 {% for a in alumno %}
@@ -35,7 +62,7 @@
                             <div class>
                                 <form method="POST" action="{% url 'salidapagina' %}">
                                     <h1>
-                                        Bienvendido {{ a.username }}
+                                        Perfil buscado
                                         <input type="submit" value="Cerrar Sesión" class="btn btn-dark"/>
                                     </h1>
                                     {% csrf_token %}
@@ -47,48 +74,58 @@
                             <div>
                                 <div class="main-body">
 
-                                    <!-- /Breadcrumb -->
-
                                     <div class="row gutters-sm">
                                         <div class="col-md-4 mb-3">
-                                            <div class="card" style="background-color: #c4ffb7">
-
-                                                <div class="card-body">
-                                                    <div class="d-flex flex-column align-items-center text-center">
-                                                        <img src="https://buhos.uson.mx/portalalumnos/obtener/fotoAlumno?expediente={{ a.matricula }}"
-                                                             alt="Admin"
-                                                             style="border-radius: 50%" width="200">
-                                                        <div class="mt-3">
-                                                            <h4></h4>
-                                                            {% if a.riesgo == "V" %}
-                                                                <p class="text-secondary mb-1"> Estado de Riesgo:
-                                                                    Verde</p>
-                                                            {% endif %}
-                                                            {% if a.riesgo == "A" %}
-                                                                <p class="text-secondary mb-1"> Estado de Riesgo:
-                                                                    Amarillo</p>
-                                                            {% endif %}
-                                                            {% if a.riesgo == "N" %}
-                                                                <p class="text-secondary mb-1"> Estado de Riesgo:
-                                                                    Naranja</p>
-                                                            {% endif %}
-                                                            {% if a.riesgo == "R" %}
-                                                                <p class="text-secondary mb-1"> Estado de Riesgo:
-                                                                    Rojo</p>
-                                                            {% endif %}
-                                                        </div>
+                                            {% if a.riesgo == "V" %}
+                                                <div class="d-flex flex-column align-items-center text-center"
+                                                     style="background-color: #c4ffb7">
+                                            {% endif %}
+                                            {% if a.riesgo == "A" %}
+                                                <div class="d-flex flex-column align-items-center text-center"
+                                                     style="background-color: #fff5b7">
+                                            {% endif %}
+                                            {% if a.riesgo == "N" %}
+                                                <div class="d-flex flex-column align-items-center text-center"
+                                                     style="background-color: #ffd991">
+                                            {% endif %}
+                                            {% if a.riesgo == "R" %}
+                                                <div class="d-flex flex-column align-items-center text-center"
+                                                     style="background-color: #ffb7b7">
+                                            {% endif %}
+                                            <div class="card-body" style="position:inherit">
+                                                <div class="d-flex flex-column align-items-center text-center">
+                                                    <img src="https://buhos.uson.mx/portalalumnos/obtener/fotoAlumno?expediente={{ a.matricula }}"
+                                                         alt="Admin"
+                                                         style="border-radius: 50%" width="200">
+                                                    <div class="mt-3">
+                                                        {% if a.riesgo == "V" %}
+                                                            <p class="text-secondary mb-1"> Estado de Riesgo:
+                                                                Verde</p>
+                                                        {% endif %}
+                                                        {% if a.riesgo == "A" %}
+                                                            <p class="text-secondary mb-1"> Estado de Riesgo:
+                                                                Amarillo</p>
+                                                        {% endif %}
+                                                        {% if a.riesgo == "N" %}
+                                                            <p class="text-secondary mb-1"> Estado de Riesgo:
+                                                                Naranja</p>
+                                                        {% endif %}
+                                                        {% if a.riesgo == "R" %}
+                                                            <p class="text-secondary mb-1"> Estado de Riesgo:
+                                                                Rojo</p>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
+                                            </div>
+
                                             <div class="row gutter-sm">
                                                 <link rel="stylesheet"
                                                       href="{% static 'css/reportar.css' %}">
                                                 <div class="col-md-16 mb-9">
                                                     <div class="card-body">
 
-                                                        <div class="container">
-
-
+                                                        <div class="d-flex flex-column align-items-center text-center">
                                                             <h4 class="d-flex align-items-center mb-3">Reportar
                                                                 Alumno</h4>
                                                             <form method="POST" action="{% url 'reporte' %}">
@@ -105,7 +142,7 @@
                                                                                     style="display: contents">
                                                                         </label>
                                                                     </div>
-                                                                    <p>
+                                                                    <p style="text-align: justify">
                                                                         ¿Cuales han sido los lineamientos no
                                                                         cumplidos?
                                                                         <span class="clue">(Marcar al menos uno)</span>
@@ -114,7 +151,7 @@
 
                                                                     <input type="hidden" name="respuesta1"
                                                                            value="0"/>
-                                                                    <label>
+                                                                    <label style="text-align: justify">
                                                                         <input type="checkbox" name="respuesta1"
                                                                                value="1" class="input-checkbox"/>
                                                                         No trae cubrebocas
@@ -123,7 +160,7 @@
 
                                                                     <input type="hidden" name="respuesta2"
                                                                            value="0"/>
-                                                                    <label>
+                                                                    <label style="text-align: justify">
                                                                         <input type="checkbox" name="respuesta2"
                                                                                value="1" class="input-checkbox"/>
                                                                         No usó gel sanitizante
@@ -132,7 +169,7 @@
 
                                                                     <input type="hidden" name="respuesta3"
                                                                            value="0"/>
-                                                                    <label>
+                                                                    <label style="text-align: justify">
                                                                         <input type="checkbox" name="respuesta3"
                                                                                value="1" class="input-checkbox"/>
                                                                         Entró al departamento aún estando el aforo
@@ -143,7 +180,7 @@
 
                                                                     <input type="hidden" name="respuesta4"
                                                                            value="0"/>
-                                                                    <label>
+                                                                    <label style="text-align: justify">
                                                                         <input type="checkbox" name="respuesta4"
                                                                                value="1" class="input-checkbox"/>
                                                                         No respetó la sana distancia
@@ -152,7 +189,7 @@
 
                                                                     <input type="hidden" name="respuesta5"
                                                                            value="0"/>
-                                                                    <label>
+                                                                    <label style="text-align: justify">
                                                                         <input type="checkbox" name="respuesta5"
                                                                                value="1" class="input-checkbox"/>
                                                                         No realizó su encuesta semanal
@@ -161,7 +198,7 @@
 
                                                                     <input type="hidden" name="respuesta6"
                                                                            value="0"/>
-                                                                    <label>
+                                                                    <label style="text-align: justify">
                                                                         <input type="checkbox" name="respuesta6"
                                                                                value="1" class="input-checkbox"/>
                                                                         Sigue visitando el campús apesar de que ya
@@ -193,10 +230,13 @@
                                                                     <div class="form-group">
 
                                                                         <div class="form-group">
-                                                                            <input type="submit" id="submit"
-                                                                                   class="submit-button"
-                                                                                   onclick="completado()">
-                                                                            Enviar reporte
+                                                                            <button type="submit" id="submit"
+                                                                                    class="submit-button"
+                                                                                    onclick="completado()">
+                                                                                Enviar reporte
+                                                                            </button>
+
+
                                                                         </div>
                                                             </form>
 
@@ -204,91 +244,175 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Nombre(s)</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{ a.first_name }}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Apellidos</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{ a.last_name }}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Correo</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{ a.email }}
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                <h6 class="mb-0">Matricula</h6>
+                                                            </div>
+                                                            <div class="col-sm-9 text-secondary">
+                                                                {{ a.matricula }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+
+                                                    <h2> Reportes </h2>
+                                                    <div class="scrollmenu">
+                                                        <table id="myTable" class="table table-striped sortable">
+                                                            <thead>
+                                                            <tr class="header">
+                                                                <th scope="col" style="text-align: center">CONTROL</th>
+                                                                <th scope="col" style="text-align: center">MATRICULA
+                                                                </th>
+                                                                <th scope="col" style="text-align: center" class="btn btn-outline-dark ">
+                                                                    FECHA
+                                                                </th>
+                                                                <th scope="col" style="text-align: center" >COMENTARIOS
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">NO USAR
+                                                                    CUBREBOCAS
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">NO USAR GEL
+                                                                    SANITIZANTE
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">NO UTILIZAR
+                                                                    TAPETE SANITIZANTE
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">NO RESPETAR
+                                                                    AFORO
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">NO RESPETAR
+                                                                    SANA DISTANCIA
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">NO REALIZAR
+                                                                    ENCUESTA SEMANAL
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">NO RESPETAR
+                                                                    ESTADO DE RIESGO
+                                                                </th>
+                                                                <th scope="col" style="text-align: center">ASISTIR DIAS
+                                                                    SEGUIDOS
+                                                                </th>
+
+
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for foo in reporte %}
+
+                                                                <tr>
+                                                                    <th scope="row" style="text-align: center">
+                                                                        <a href="{% url 'eliminar' id=foo.id %}"
+                                                                           class="btn btn-danger" role="button"
+                                                                           type="submit" onclick="myFunction()">Eliminar
+                                                                            reporte</a>
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">{{ foo.matricula_reportado }}</th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">{{ foo.hora }}</th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">{{ foo.Comentarios }} </th>
+
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.NoCubrebocas  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.GelSanitizante  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.NoTapeteSanitizante  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.NoRespetarAforo  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.NoRespetarSanaDistancia  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.NoRealizarEncuestaSemanal  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.NoRespetarEstadoDeRiesgo  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+                                                                    <th scope="row"
+                                                                        style="text-align: center">
+                                                                        {% if foo.AsistirDiasSeguidos  == False %}
+                                                                            <i class="fas fa-check"></i>{% else %}
+                                                                            <i class="fas fa-times"></i>{% endif %}
+                                                                    </th>
+
+
+                                                                </tr>
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Nombre(s)</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{ a.first_name }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Apellidos</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{ a.last_name }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Correo</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{ a.email }}
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <h6 class="mb-0">Matricula</h6>
-                                                </div>
-                                                <div class="col-sm-9 text-secondary">
-                                                    {{ a.matricula }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                                     <div>
-                                                <h2> Reportes </h2>
-                                                    <table class="table table-light">
-                                                      <thead >
-                                                    <tr>
-                                                        <th scope="col">MATRICULA</th>
-                                                        <th scope="col" style="text-align: center">FECHA</th>
-                                                        <th scope="col">CUBREBOCAS</th>
-                                                        <th scope="col">SANITIZANTE</th>
-                                                        <th scope="col">COMENTARIOS</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    {% for foo in reporte %}
-
-                                                        <tr>
-                                                            <th scope="row"
-                                                                style="text-align: center">{{ foo.matricula_reportado }}</th>
-                                                            <th scope="row"
-                                                                style="text-align: center">{{ foo.hora }}</th>
-                                                            <th scope="row"
-                                                                style="text-align: center">{{ foo.NoCubrebocas }}</th>
-                                                            <th scope="row"
-                                                                style="text-align: center">{{ foo.GelSanitizante }}</th>
-                                                            <th scope="row"
-                                                                style="text-align: center">{{ foo.Comentarios }} </th>
-
-                                                        </tr>
-                                                    {% endfor %}
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </div>
                 {% endfor %}
+            </div>
 
 
             </body>
@@ -311,7 +435,19 @@
     </div>
 {% endif %}
 </body>
+
+<script>
+    function myFunction() {
+        var txt;
+        if (confirm("¿Seguro que quieres eliminar?")) {
+            console.log("Reporte eliminado correctamente");
+        }
+    }
+</script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="{% static 'js/reportar.js' %}"></script>
+<script src="{% static 'js/alerta.js' %}"></script>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
 </html>

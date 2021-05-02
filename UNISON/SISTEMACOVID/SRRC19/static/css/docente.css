@@ -121,3 +121,9 @@ body {
 .CARRERA-RSR-3-hex { color: #048ABF; }
 .CARRERA-RSR-4-hex { color: #04B2D9; }
 .CARRERA-RSR-5-hex { color: #F23D3D; }
+
+
+a.encabezado:hover{
+color:#002646 !important;
+}
+

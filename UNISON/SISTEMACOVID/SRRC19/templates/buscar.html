@@ -35,11 +35,14 @@
                     <!----------------------------------------------------------------------------------------------------------------------
                    *********************************************************************************************************************-->
                     <form action="{% url 'encontradopagina' %}" method="get">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Ingrese su matricula</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Matricula">
+                  </div>
 
-                        <center>
-                        <input name="busqueda" type="text" placeholder="Matricula...">
+                        <input name="busqueda" type="number" placeholder="Matricula...">
                         <button type="submit" class="btn btn-success">Buscar</button>
-                        </center>
+
                     </form>
 
                     <!----------------------------------------------------------------------------------------------------------------------
@@ -64,6 +67,5 @@
     </div>
     </body>
 {% endif %}
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="{% static 'js/reportar.js.js' %}"></script>
+
 </html>

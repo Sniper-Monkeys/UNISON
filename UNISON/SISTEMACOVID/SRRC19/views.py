@@ -192,9 +192,12 @@ def Generar_Reporte(request):
         reporte.AsistirDiasSeguidos = request.POST.get('respuesta7')
         reporte.Comentarios = request.POST.get('comment')
         reporte.save()
-        alumno = User.objects.all().get(matricula=request.POST.get('matricula'))
+        alumno = User.objects.get(matricula=request.POST.get('matricula'))
+        print(request.POST.get('matricula'))
         alumno.puntos += 25
-        alumno.save()
+
+        alumno.save(update_fields=['puntos'])
+
         messages.success(request, 'Se ha mandado el reporte correctamente')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -261,5 +264,15 @@ def Generar_Encuesta(request):
         alumno.puntos += puntos
         alumno.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+
+
+def Eliminar(request, id):
+    obj = Reporte.objects.get(id=id)
+    obj.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+ #Reporte.objects.get(id=id).delete()
 
 
