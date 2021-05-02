@@ -15,8 +15,9 @@ from django.contrib.auth.models import AbstractUser, Group
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 
+
 class User(AbstractUser):
-    matricula = models.CharField(max_length=50, default='xxxxxxxx',verbose_name='Matricula')
+    matricula = models.CharField(max_length=50, default='xxxxxxxx', verbose_name='Matricula')
     OCUPACION = (('A', 'Alumno'), ('D', 'Docente'), ('P', 'Personal Administrativo'))
     ocupacion = models.CharField(max_length=1, choices=OCUPACION, default='A')
     RIESGO = (('R', 'Rojo'), ('N', 'Naranja'), ('A', 'Amarillo'), ('V', 'Verde'))
@@ -24,22 +25,24 @@ class User(AbstractUser):
     CORREOMANDADO = (('S', 'SI'), ('N', 'NO'))
     CorreoMandado = models.CharField(max_length=1, choices=CORREOMANDADO, default='N')
     puntos = models.IntegerField(default=0)
+
     class Meta:
         ordering = ['riesgo']
+
+    def CambiarARojo(self):
+        self.riesgo = 'R'
+
 
 @receiver(pre_save, sender=User)
 def signal(sender, instance, **kwargs):
     try:
         old_instance = sender.objects.get(pk=instance.pk)
-        #SISTEMA PARA MANDAR CORREO CUANDO LOS PUNTOS DEL USUARIO SEAN MAYOR A X PUNTOS
+        # SISTEMA PARA MANDAR CORREO CUANDO LOS PUNTOS DEL USUARIO SEAN MAYOR A X PUNTOS
         if old_instance.puntos != instance.puntos:
             if instance.puntos >= 50:
-                alumno = User.objects.get(matricula=instance.matricula)
-                alumno.riesgo = 'R'
-                alumno.save()
-        #SISTEMA PARA MANDAR CORREO CUANDO EL USUARIO ESTÉ EN ROJO
+                instance.riesgo = 'R'
+        # SISTEMA PARA MANDAR CORREO CUANDO EL USUARIO ESTÉ EN ROJO
         if old_instance.riesgo != instance.riesgo:
-
             if instance.riesgo == 'R':
                 asunto = "¡Persona en Estado de Riesgo Rojo!"
                 mensaje = render_to_string('email_template.html',
@@ -47,13 +50,22 @@ def signal(sender, instance, **kwargs):
                                             'expediente': instance.matricula})
                 email_desde = settings.EMAIL_HOST_USER
                 emails = User.objects.filter(ocupacion="P").exclude(email='').values_list('email')
+
                 emails_para = []
                 contador = 0
                 for i in emails:
                     emails_para.append(i[contador])
                     contador += 1
                 emails_para.append(instance.email)
-                # print(emails_para)
+
+                grupos = Grupos.objects.all()
+                alumnos = []
+                for grupo in grupos:
+                    alumnos = grupo.users.values()
+                    for alumno in alumnos:
+                        if alumno['matricula'] == instance.matricula:
+                            emails_para.append(grupo.Profesor.Docente.email)
+                print(emails_para)
                 if len(emails_para) < 4:
                     send_mail(asunto, mensaje, email_desde, emails_para, fail_silently=False)
                 elif len(emails_para) > 4:
@@ -62,6 +74,7 @@ def signal(sender, instance, **kwargs):
     except sender.DoesNotExist:
         pass
 
+
 class Encuesta(models.Model):
     # Información alumno
     matricula_encuestado = models.CharField(max_length=50, default='xxxxxxxx')
@@ -69,19 +82,19 @@ class Encuesta(models.Model):
     fecha = models.DateTimeField(default=datetime.now(), blank=True)
 
     # Problemas de salud
-   
+
     positivoCovid = models.BooleanField(default=False)
-    fiebre = models.IntegerField( default=0)
-    gripa = models.IntegerField( default=0)
-    tos = models.IntegerField( default=0)
-    problemasRespiratorios = models.IntegerField( default=0)
-    dolorCabeza = models.IntegerField( default=0)
-    dolorMuscular = models.IntegerField( default=0)
-    dolorGarganta = models.IntegerField( default=0)
-    diarrea = models.IntegerField( default=0)
-    perdidaOlfato = models.IntegerField( default=0)
-    perdidaGusto = models.IntegerField( default=0)
-    cansancio = models.IntegerField( default=0)
+    fiebre = models.IntegerField(default=0)
+    gripa = models.IntegerField(default=0)
+    tos = models.IntegerField(default=0)
+    problemasRespiratorios = models.IntegerField(default=0)
+    dolorCabeza = models.IntegerField(default=0)
+    dolorMuscular = models.IntegerField(default=0)
+    dolorGarganta = models.IntegerField(default=0)
+    diarrea = models.IntegerField(default=0)
+    perdidaOlfato = models.IntegerField(default=0)
+    perdidaGusto = models.IntegerField(default=0)
+    cansancio = models.IntegerField(default=0)
     comentariosdificultad = models.CharField(max_length=255, default="...")
 
     problemaCardiovascular = models.BooleanField(default=False)
@@ -102,8 +115,10 @@ class Encuesta(models.Model):
     parque = models.BooleanField(default=False)
     hospital = models.BooleanField(default=False)
     otrosLugaresPublicos = models.CharField(max_length=255, default="...")
+
     def __str__(self):
         return self.matricula_encuestado
+
 
 class Reporte(models.Model):
     matricula_reportado = models.CharField(max_length=50, default='xxxxxxxx')
@@ -137,15 +152,16 @@ class AlumnoBuscado(models.Model):
     def __str__(self):
         return self.alumno_buscado
 
-
 class Profesores(models.Model):
     """Person object"""
-    NombreCompleto = models.CharField(max_length=255)
-    CedulaProfesional = models.CharField(max_length=50, default='xxxxxxxx')
+    Docente = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
 
     def __str__(self):
-        return self.NombreCompleto
-
+        return self.Docente.username
 
 class Grupos(models.Model):
     Materia = models.CharField(max_length=255)
