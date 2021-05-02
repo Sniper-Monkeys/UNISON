@@ -23,7 +23,7 @@
                 <ul class="tabs">
                     <li><a href="#Inicio"><i class="fas fa-home"></i>Menú inicio</a></li>
                     <li><a href="#AlumnosLCC"><i class="fas fa-exclamation-circle"></i>Alumnos LCC</a></li>
-                    <li><a href="{% url 'buscarpagina' %}"><i class="fas fa-exclamation-circle"></i>Buscar Alumno</a>
+
                     </li>
                 </ul>
             </div>
@@ -60,18 +60,20 @@
                         <p style="font-size: xx-large">flknsdlkfnldsf.</p>
                         <div class="row">
 
-                                    <div class="col-xl-6 col-lg-6">
-                                        <div class="card">
-                                            <img src="https://i.blogs.es/376b75/mexico-se-pinta-de-amarillo-en-semaforo-por-covid-y-sonora-se-convierte-en-el-tercer-estado-en-semaforo-verde/840_560.jpg"
-                                                 class="card-img" alt="Semaforo Sonora">
-                                            <div class="card-img-overlay">
-                                                <h1 class="card-title" style="color: #000000; text-align: center">Semaforo</h1>
-                                            </div>
-                                        </div>
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="card">
+                                    <img src="https://i.blogs.es/376b75/mexico-se-pinta-de-amarillo-en-semaforo-por-covid-y-sonora-se-convierte-en-el-tercer-estado-en-semaforo-verde/840_560.jpg"
+                                         class="card-img" alt="Semaforo Sonora">
+                                    <div class="card-img-overlay">
+                                        <h1 class="card-title" style="color: #000000; text-align: center">Semaforo</h1>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6">
-                                         <canvas id="RiesgoCovid" width="200" height="200"></canvas>
-                                      </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="card" style="width:75%;">
+                                    <canvas id="RiesgoCovid"></canvas>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -144,6 +146,7 @@
         </div>
 
         </body>
+
     {% endif %}
 {% else %}
     <body>

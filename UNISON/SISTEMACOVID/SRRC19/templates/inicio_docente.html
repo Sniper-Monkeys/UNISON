@@ -86,7 +86,10 @@
                     <div>
                         <div class="content">
                             {% block content %}
-                                <table class="table table-striped">
+                                <h2 style="text-align: center">Buscar un alumno...</h2>
+                                <input type="text" id="myInput" onkeyup="myFunction()"
+                                       placeholder="Ingresa una matrícula" title="Ingresa una matrícula">
+                                <table id="myTable" class="table table-striped searchable sortable">
                                     <thead>
                                     <tr class="header">
 

@@ -324,414 +324,599 @@
 
                 </div>
                         <div class="info" id="Encuesta" >
+                            <form method="POST" action="{% url 'encuestas' %}"> {% csrf_token %}
+
+                        <!----------------------------------------------------------------------------------------------------------------------
+                       *********************************************************************************************************************-->
+                        <div class="rb-box">
+                            <!-- Radio Button Module -->
+
+                            <p>1. ¿Tienes COVID-19?</p>
+                            <div class="rb">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="respuesta1">Si
+                                        <input class="form-check-input" type="radio" name="respuesta1"
+                                               value="1">
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="respuesta1">No
+                                        <input class="form-check-input" type="radio" name="respuesta1"
+                                               value="0">
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Radio Button Module -->
+
+                                <p>2. ¿Ha presentado síntomas de gripe en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta2">1
+                                            <input class="form-check-input" type="radio" name="respuesta2"
+                                                   value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                         <label class="form-check-label" for="respuesta2">2
+                                            <input class="form-check-input" type="radio" name="respuesta2"
+                                                   value="2">
+
+                                       </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta2">3
+                                            <input class="form-check-input" type="radio" name="respuesta2"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta2">4
+                                            <input class="form-check-input" type="radio" name="respuesta2"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta2">5
+                                            <input class="form-check-input" type="radio" name="respuesta2"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Radio Button Module -->
+                                <p>3. ¿Ha presentado síntomas de fiebre en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta3">1
+                                             <input class="form-check-input" type="radio" name="respuesta3"
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta3">2
+                                            <input class="form-check-input" type="radio" name="respuesta3"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta3">3
+                                            <input class="form-check-input" type="radio" name="respuesta3"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta3">4
+                                            <input class="form-check-input" type="radio" name="respuesta3"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                         <label class="form-check-label" for="respuesta3">5
+                                        <input class="form-check-input" type="radio" name="respuesta3"
+                                               value="5">
+                                       </label>
+                                    </div>
+
+                                </div>
+
+                            <!-- Radio Button Module -->
+
+                                <p>4. ¿Ha presentado síntomas de tos en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta4">1
+                                        <input class="form-check-input" type="radio" name="respuesta4"
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta4">2
+                                        <input class="form-check-input" type="radio" name="respuesta4"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta4">3
+                                            <input class="form-check-input" type="radio" name="respuesta4"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta4">4
+                                            <input class="form-check-input" type="radio" name="respuesta4"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta4">5
+                                             <input class="form-check-input" type="radio" name="respuesta4"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Radio Button Module -->
+                                <p>5. ¿Ha presentado problemas para respirar en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                       <label class="form-check-label" for="respuesta5">1
+                                        <input class="form-check-input" type="radio" name="respuesta5"
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta5">2
+                                            <input class="form-check-input" type="radio" name="respuesta5"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta5">3
+                                            <input class="form-check-input" type="radio" name="respuesta5"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta5">4
+                                            <input class="form-check-input" type="radio" name="respuesta5"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta5">5
+                                            <input class="form-check-input" type="radio" name="respuesta5"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Radio Button Module -->
+                                <p>6. ¿Ha presentado dolor de cabeza en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                         <label class="form-check-label" for="respuesta6">1
+                                        <input class="form-check-input" type="radio" name="respuesta6"
+                                               value="1">
+                                       </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta6">2
+                                            <input class="form-check-input" type="radio" name="respuesta6"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                         <label class="form-check-label" for="respuesta6">3
+                                        <input class="form-check-input" type="radio" name="respuesta6"
+                                               value="3">
+                                       </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta6">4
+                                            <input class="form-check-input" type="radio" name="respuesta6"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta6">5
+                                            <input class="form-check-input" type="radio" name="respuesta6"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Radio Button Module -->
+                                <p>7. ¿Ha presentado dolor muscular en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta7">1
+                                        <input class="form-check-input" type="radio" name="respuesta7"
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta7">2
+                                            <input class="form-check-input" type="radio" name="respuesta7"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta7">3
+                                        <input class="form-check-input" type="radio" name="respuesta7"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta7">4
+                                            <input class="form-check-input" type="radio" name="respuesta7"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta7">5
+                                            <input class="form-check-input" type="radio" name="respuesta7"
+                                                value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Radio Button Module -->
+                                <p>8. ¿Ha presentado dolor de garganta en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta8">1
+                                        <input class="form-check-input" type="radio" name=respuesta8
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta8">2
+                                        <input class="form-check-input" type="radio" name="respuesta8"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta8">3
+                                        <input class="form-check-input" type="radio" name="respuesta8"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta8">4
+                                            <input class="form-check-input" type="radio" name="respuesta8"
+                                               value="4">
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta8">5
+                                            <input class="form-check-input" type="radio" name="respuesta8"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                                <p>9. ¿Ha presentado pérdida del olfato en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                         <label class="form-check-label" for="respuesta9">1
+                                        <input class="form-check-input" type="radio" name="respuesta9"
+                                               value="1">
+                                       </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta9">2
+                                            <input class="form-check-input" type="radio" name="respuesta9"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta9">3
+                                        <input class="form-check-input" type="radio" name="respuesta9"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta9">4
+                                            <input class="form-check-input" type="radio" name="respuesta9"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta9">5
+                                        <input class="form-check-input" type="radio" name="respuesta9"
+                                               value=5>
+                                        </label>
+                                    </div>
+
+                                </div>
+
+                                <p>10. ¿Ha presentado pérdida del gusto en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta10">1
+                                        <input class="form-check-input" type="radio" name="respuesta10"
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta10">2
+                                            <input class="form-check-input" type="radio" name="respuesta10"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta10">3
+                                        <input class="form-check-input" type="radio" name="respuesta10"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta10">4
+                                            <input class="form-check-input" type="radio" name="respuesta10"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta10">5
+                                        <input class="form-check-input" type="radio" name="respuesta10"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+
+                                <p>11. ¿Ha presentado cansancio en la última semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta11">1
+                                            <input class="form-check-input" type="radio" name="respuesta11"
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta11">2
+                                            <input class="form-check-input" type="radio" name="respuesta11"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta11">3
+                                            <input class="form-check-input" type="radio" name="respuesta11"
+                                               value="3">
+                                        </label>
+
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta11">4
+                                            <input class="form-check-input" type="radio" name="respuesta11"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta11">5
+                                            <input class="form-check-input" type="radio" name="respuesta11"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- Radio Button Module -->
+                                <p> 12. Aproximadamente, ¿con cuántas personas has tenido contacto fuera de la escuela
+                                    en esta
+                                    semana?</p>
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta12">1-5
+                                            <input class="form-check-input" type="radio" name="respuesta12"
+                                               value="1">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta12">6-10
+                                            <input class="form-check-input" type="radio" name="respuesta12"
+                                               value="2">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta12">11-20
+                                            <input class="form-check-input" type="radio" name="respuesta12"
+                                               value="3">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta12">21-50
+                                            <input class="form-check-input" type="radio" name="respuesta12"
+                                               value="4">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="respuesta12">Más de 50
+                                            <input class="form-check-input" type="radio" name="respuesta12"
+                                               value="5">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                            <div class="row">
+                                <p>13. ¿Sufres alguna de las siguientes enfermedades? <span class="text-muted">(Puedes marcar varias opciones)</span>
+                                </p>
+
+                            </div>
+
+                                <div class="rb">
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="cardiovascular">Problema cardiovascular
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                               name="cardiovascular">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="asma">Asma
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                               name="asma">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="cancer">Cáncer
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                               name="cancer">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="diabetes">Diabetes
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                               name="diabetes">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="bronquitis">Bronquitis
+                                            <input class="form-check-input" type="checkbox"
+                                               value="1" name="bronquitis">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="otro1">Otro
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                               name="otro1">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                            <p>14. ¿Has estado en alguno de estos lugares públicos? <span class="text-muted">(Puedes marcar varias opciones)</span>
+                            </p>
+
+
+                                <div class="rb">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="cine">Cine
+                                        <input class="form-check-input" type="checkbox"
+                                               value="1" name="cine">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="centro">Centro Comercial
+                                        <input class="form-check-input" type="checkbox"
+                                               value="1" name="centro">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="restaurante">Restaurante
+                                        <input class="form-check-input" type="checkbox"
+                                               value="1" name="restaurante">
+                                       </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                       <label class="form-check-label" for="parque">Parque
+                                        <input class="form-check-input" type="checkbox"
+                                               value="1" name="parque">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="hospital">Hospital
+                                        <input class="form-check-input" type="checkbox"
+                                               value="1" name="hospital">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="otro2">Otro
+                                        <input class="form-check-input" type="checkbox"
+                                               value="1" name="otro2">
+                                       </label>
+                                    </div>
+
+                                </div>
+
+
+                            <!-- Button -->
+                            <div class="button-box">
+                                <button type="submit" class="submit-button">Mandar encuesta</button>
+                            </div>
+
+                        </div>
+
+                </form>
  <!----------------------------------------------------------------------------------------------------------------------
-*********************************************************************************************************************-->
-
-<div class="rb-box">
-  <!-- Radio Button Module -->
-  <p>1. ¿Tienes COVID-19?</p>
-  <div id="rb-1" class="rb">
-    <div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">Si</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">No</span>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- Radio Button Module -->
-  <p>2. ¿Ha presentado síntomas de gripe en la última semana?</p>
-  <div id="rb-2" class="rb">
-    <div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Radio Button Module -->
-  <p>3. ¿Ha presentado síntomas de fiebre en la última semana?</p>
-  <div id="rb-3" class="rb">
-    <div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Radio Button Module -->
-  <p>4. ¿Ha presentado síntomas de tos en la última semana?</p>
-  <div id="rb-4" class="rb">
-    <div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Radio Button Module -->
-  <p>5. ¿Ha presentado problemas para respirar en la última semana?</p>
-  <div id="rb-5" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-    <!-- Radio Button Module -->
-  <p>6. ¿Ha presentado dolor de cabeza en la última semana?</p>
-  <div id="rb-6" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-    <!-- Radio Button Module -->
-  <p>7. ¿Ha presentado dolor muscular en la última semana?</p>
-  <div id="rb-7" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-    <!-- Radio Button Module -->
-  <p>8. ¿Ha presentado dolor de garganta en la última semana?</p>
-  <div id="rb-8" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-    <p>9. ¿Ha presentado pérdida del olfato en la última semana?</p>
-  <div id="rb-9" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-    <p>10. ¿Ha presentado pérdida del gusto en la última semana?</p>
-  <div id="rb-10" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-    <p>11. ¿Ha presentado cansancio en la última semana?</p>
-  <div id="rb-11" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">2</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">3</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">4</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">5</span>
-      </div>
-    </div>
-  </div>
-
-    <!-- Radio Button Module -->
-  <p> 12. Aproximadamente, ¿con cuántas personas has tenido contacto fuera de la escuela en esta semana?</p>
-  <div id="rb-12" class="rb">
-    <div class="rb-tab" data-value="4">
-      <div class="rb-spot">
-        <span class="rb-txt">1-5</span>
-      </div>
-    </div><div class="rb-tab" data-value="2">
-      <div class="rb-spot">
-        <span class="rb-txt">5-10</span>
-      </div>
-    </div><div class="rb-tab" data-value="5">
-      <div class="rb-spot">
-        <span class="rb-txt">10-20</span>
-      </div>
-    </div><div class="rb-tab" data-value="1">
-      <div class="rb-spot">
-        <span class="rb-txt">20-50</span>
-      </div>
-    </div><div class="rb-tab rb-tab-active" data-value="3">
-      <div class="rb-spot">
-        <span class="rb-txt">Más de 50</span>
-      </div>
-    </div>
-  </div>
-
-
-    <p>13. ¿Sufres alguna de las siguientes enfermedades?</p>
-        <span class="clue">(Puedes marcar varias opciones)</span>
-
-      <label
-        ><input
-          name="prefer"
-          value="front-end-projects"
-          type="checkbox"
-          class="input-checkbox"
-        />Problema cardiovascular</label
-      >
-      <label>
-        <input
-          name="prefer"
-          value="back-end-projects"
-          type="checkbox"
-          class="input-checkbox"
-        />Asma</label>
-      <label
-        ><input
-          name="prefer"
-          value="data-visualization"
-          type="checkbox"
-          class="input-checkbox"
-        />Cáncer</label>
-
-      <label
-        ><input
-          name="prefer"
-          value="challenges"
-          type="checkbox"
-          class="input-checkbox"
-        />Diabetes</label>
-
-      <label
-        ><input
-          name="prefer"
-          value="open-source-community"
-          type="checkbox"
-          class="input-checkbox"
-        />Bronquitis</label>
-
-      <label
-        ><input
-          name="prefer"
-          value="gitter-help-rooms"
-          type="checkbox"
-          class="input-checkbox"
-        />Otra...</label>
-
-    <p>14. ¿Has estado en alguno de estos lugares públicos?</p>
-        <span class="clue">(Puedes marcar varias opciones)</span>
-
-      <label
-        ><input
-          name="prefer"
-          value="front-end-projects"
-          type="checkbox"
-          class="input-checkbox"
-        />Cine</label
-      >
-      <label>
-        <input
-          name="prefer"
-          value="back-end-projects"
-          type="checkbox"
-          class="input-checkbox"
-        />Centro comercial</label>
-      <label
-        ><input
-          name="prefer"
-          value="data-visualization"
-          type="checkbox"
-          class="input-checkbox"
-        />Restaurante</label>
-
-      <label
-        ><input
-          name="prefer"
-          value="challenges"
-          type="checkbox"
-          class="input-checkbox"
-        />Parque</label>
-
-      <label
-        ><input
-          name="prefer"
-          value="open-source-community"
-          type="checkbox"
-          class="input-checkbox"
-        />Hospital</label>
-
-      <label
-        ><input
-          name="prefer"
-          value="gitter-help-rooms"
-          type="checkbox"
-          class="input-checkbox"
-        />Otro...</label>
-
-  <!-- Button -->
-  <div class="button-box">
-    <button class="button trigger">Mandar encuesta</button>
-  </div>
- <!----------------------------------------------------------------------------------------------------------------------
 *********************************************************************************************************************-->
  <!----------------------------------------------------------------------------------------------------------------------
 *********************************************************************************************************************-->
@@ -740,7 +925,7 @@
 
                      </div>
                     </div>
-                </div>
+
 
 
     </body>
