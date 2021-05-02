@@ -13,7 +13,7 @@
 </head>
 <body style="background-color: #c9c7c7">
 {% if user.is_authenticated %}
-    {% if user.ocupacion ==  'D' %}
+    {% if user.ocupacion !=  'A' %}
         <link rel="stylesheet" href="{% static 'css/docente.css' %}">
         <div class="wrapper">
             <div class="sidebar">
