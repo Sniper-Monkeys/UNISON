@@ -78,34 +78,56 @@ def inicio(request):
 
 
 def Inicio_Alumno(request):
-    return render(request, 'inicio_alumno.html')
+    Talum = User.objects.all().filter(ocupacion="A")
+    cantidadEstadoDeRiesgo = 0
+    for i in Talum:
+        if i.riesgo == 'R':
+            cantidadEstadoDeRiesgo += 1
+    valor = (cantidadEstadoDeRiesgo / len(Talum)) * 100
+    promedio = round(valor, 2)
+
+    return render(request, 'inicio_alumno.html',{"promedio": promedio})
 
 
 def Inicio_Docente(request):
+    group = []
     alumnos = []
-    riesgo = []
     cantidadEstadoDeRiesgo = 0
 
-    # Add the results to the many to many field (notice the *)
+    grupos = Grupos.objects.all()
+    for grupo in grupos:
+        if grupo.Profesor.Docente == request.user:
+            group = grupo
 
-    group = Grupos.objects.get(Materia='Ingeniería en Software 1')
-
+   # group = Grupos.objects.get(Materia='Ingeniería en Software 1')
+    #print(group.Profesor.Correo)
     for i in group.users.values():
         alumnos.append(i)
-        if i["riesgo"] < "V":
+        if i["riesgo"] == "R":
             cantidadEstadoDeRiesgo += 1
-    print(cantidadEstadoDeRiesgo)
+    Talum = User.objects.all().filter(ocupacion= "A")
+    Triesgo = 0
+    for alum in Talum:
+        if alum.riesgo == 'R':
+            Triesgo+=1
 
-    return render(request, 'inicio_docente.html', {"alumnos": alumnos , "contagiados": cantidadEstadoDeRiesgo})
+    valor = (Triesgo / len(Talum)) * 100
+    promedio = round(valor,2)
+    #print(cantidadEstadoDeRiesgo)
+
+    return render(request, 'inicio_docente.html', {"alumnos": alumnos , "contagiados": cantidadEstadoDeRiesgo, "promedio": promedio})
 
 
 def Inicio_Administrativo(request):
-    alumnos = User.objects.all().filter(ocupacion= "A")
+    Talum = User.objects.all().filter(ocupacion= "A")
     cantidadEstadoDeRiesgo = 0
-    for i in alumnos:
-        if i.riesgo < 'V':
+    for i in Talum:
+        if i.riesgo == 'R':
             cantidadEstadoDeRiesgo += 1
-    return render(request, 'inicio_administrativo.html', {"alumnos": alumnos , "contagiados": cantidadEstadoDeRiesgo})
+    valor = (cantidadEstadoDeRiesgo / len(Talum)) * 100
+    promedio = round(valor,2)
+    promedio2 = 100-promedio
+    return render(request, 'inicio_administrativo.html', {"alumnos": Talum , "contagiados": cantidadEstadoDeRiesgo, "promedio": promedio, "promedio2":promedio2})
 
 
 def perfil(request):
@@ -232,6 +254,7 @@ def Generar_Encuesta(request):
         #RECORRER TODAS LAS RESPUESTAS Y SUMARLAS PARA OBTENER UN PUNTUAJE
         puntos = 0
         alumno = User.objects.all().get(matricula=request.user.matricula)
+
         for k, v in request.POST.items():
             if not k == 'csrfmiddlewaretoken':
                 puntos += int(v)

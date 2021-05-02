@@ -47,7 +47,8 @@
                     </div>
                 </div>
                 <div class="info">
-                    <h1>Hay un total de {{ contagiados }} en estado de riesgo</h1>
+                   <h1>En tu grupo, hay un total de {{ contagiados }} en estado de riesgo.</h1>
+                    <h1>En el edificio, hay un promedio total de {{ promedio }}% </h1>
 
                     <form action="/contactar/" method="POST"> {% csrf_token %}
                         <div class="form-group">
