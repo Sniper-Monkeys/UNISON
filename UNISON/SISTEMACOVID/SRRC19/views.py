@@ -184,17 +184,15 @@ def Generar_Reporte(request):
 
         reporte.hora = datetime.now()
         reporte.NoCubrebocas = request.POST.get('respuesta1')
-        reporte.GelSanitizante = request.POST.get('respuesta2')
-        reporte.NoRespetarAforo = request.POST.get('respuesta3')
-        reporte.NoRespetarSanaDistancia = request.POST.get('respuesta4')
-        reporte.NoRealizarEncuestaSemanal = request.POST.get('respuesta5')
-        reporte.NoRespetarEstadoDeRiesgo = request.POST.get('respuesta6')
-        reporte.AsistirDiasSeguidos = request.POST.get('respuesta7')
+        reporte.NoRespetarAforo = request.POST.get('respuesta2')
+        reporte.NoRespetarSanaDistancia = request.POST.get('respuesta3')
+        reporte.NoRealizarEncuestaSemanal = request.POST.get('respuesta4')
+        reporte.NoRespetarEstadoDeRiesgo = request.POST.get('respuesta5')
         reporte.Comentarios = request.POST.get('comment')
         reporte.save()
         alumno = User.objects.get(matricula=request.POST.get('matricula'))
         print(request.POST.get('matricula'))
-        alumno.puntos += 25
+        alumno.puntos += 5
 
         alumno.save(update_fields=['puntos'])
 
@@ -258,6 +256,7 @@ def Generar_Encuesta(request):
         #RECORRER TODAS LAS RESPUESTAS Y SUMARLAS PARA OBTENER UN PUNTUAJE
         puntos = 0
         alumno = User.objects.all().get(matricula=request.user.matricula)
+        alumno.puntos = 0
 
         for k, v in request.POST.items():
             if not k == 'csrfmiddlewaretoken':

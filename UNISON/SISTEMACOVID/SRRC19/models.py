@@ -134,7 +134,6 @@ class Reporte(models.Model):
     NoRespetarSanaDistancia = models.BooleanField(default=False)
     NoRealizarEncuestaSemanal = models.BooleanField(default=False)
     NoRespetarEstadoDeRiesgo = models.BooleanField(default=False)
-    AsistirDiasSeguidos = models.BooleanField(default=False)
     Comentarios = models.CharField(max_length=255, default="...")
     hora = models.DateTimeField(default=datetime.now(), blank=True)
 
@@ -145,13 +144,10 @@ class Reporte(models.Model):
 class AlumnoBuscado(models.Model):
     alumno_buscado = models.CharField(max_length=50, default='xxxxxxxx')
     NoCubrebocas = models.BooleanField(default=False)
-    GelSanitizante = models.BooleanField(default=False)
-    NoTapeteSanitizante = models.BooleanField(default=False)
     NoRespetarAforo = models.BooleanField(default=False)
     NoRealizarEncuestaSemanal = models.BooleanField(default=False)
     NoRespetarSanaDistancia = models.BooleanField(default=False)
     NoRespetarEstadoDeRiesgo = models.BooleanField(default=False)
-    AsistirDiasSeguidos = models.BooleanField(default=False)
     Comentarios = models.CharField(max_length=255, default="...")
 
     def __str__(self):
