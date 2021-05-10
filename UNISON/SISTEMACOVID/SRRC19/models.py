@@ -39,7 +39,7 @@ def signal(sender, instance, **kwargs):
         old_instance = sender.objects.get(pk=instance.pk)
         # SISTEMA PARA MANDAR CORREO CUANDO LOS PUNTOS DEL USUARIO SEAN MAYOR A X PUNTOS
         if old_instance.puntos != instance.puntos:
-            if instance.puntos >= 45:
+            if instance.puntos >= 50:
                 instance.riesgo = 'R'
             elif 35 <= instance.puntos < 50:
                 instance.riesgo = 'N'
