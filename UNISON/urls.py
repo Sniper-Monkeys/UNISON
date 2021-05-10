@@ -36,6 +36,6 @@ urlpatterns = [
     path('encontrado/', Perfil_Buscado, name="encontradopagina"),
     path('reportar/', Reportar, name="reportar"),
     path('generareporte/', Generar_Reporte, name="reporte"),
-    path('generarencuesta/', Generar_Encuesta,name="encuestas"),
+    path('generarencuesta/', Generar_Encuesta, name="encuestas"),
     path('eliminar/<int:id>', Eliminar, name="eliminar"),
 ]

@@ -221,7 +221,8 @@ def Generar_Encuesta(request):
         encuesta.perdidaOlfato = request.POST.get('respuesta9')
         encuesta.perdidaGusto= request.POST.get('respuesta10')
         encuesta.cansancio = request.POST.get('respuesta11')
-        encuesta.PersonasContacto = '2'
+        encuesta.PersonasContacto = request.POST.get('respuesta12')
+
 
         if not request.POST.get("cardiovascular") is None:
             encuesta.problemaCardiovascular = 1
@@ -264,8 +265,6 @@ def Generar_Encuesta(request):
         alumno.puntos += puntos
         alumno.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
 
 
 
