@@ -130,8 +130,6 @@ class Encuesta(models.Model):
 class Reporte(models.Model):
     matricula_reportado = models.CharField(max_length=50, default='xxxxxxxx')
     NoCubrebocas = models.BooleanField(default=False)
-    GelSanitizante = models.BooleanField(default=False)
-    NoTapeteSanitizante = models.BooleanField(default=False)
     NoRespetarAforo = models.BooleanField(default=False)
     NoRespetarSanaDistancia = models.BooleanField(default=False)
     NoRealizarEncuestaSemanal = models.BooleanField(default=False)
